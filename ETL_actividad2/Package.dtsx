@@ -11,8 +11,8 @@
   DTS:LocaleID="9226"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="31"
-  DTS:VersionGUID="{D3C91E02-F090-416A-BAD4-2B2789EB5BDF}">
+  DTS:VersionBuild="33"
+  DTS:VersionGUID="{DF09C328-2349-4633-8623-141A8ADAE199}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -1944,6 +1944,1460 @@
         <SQLTask:SqlTaskData
           SQLTask:Connection="{94E0FBF7-229D-4A8F-A940-7724B216E618}"
           SQLTask:SqlStatementSource="TRUNCATE TABLE TB_cliente&#xA;TRUNCATE TABLE TB_empleado&#xA;TRUNCATE TABLE TB_fecha&#xA;TRUNCATE TABLE TB_oficina&#xA;TRUNCATE TABLE TB_producto&#xA;TRUNCATE TABLE TB_categoria_producto&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TransformacionEmpleado"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D287B8F4-639A-40EA-95C3-D162677BD21F}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TransformacionEmpleado"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\TransformacionEmpleado\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\TransformacionEmpleado\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\Conditional Split.Inputs[Conditional Split Input].Columns[ID_empleadoDim]"
+                      cachedDataType="i4"
+                      cachedName="ID_empleadoDim"
+                      lineageId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[ID_empleadoDim]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\TransformacionEmpleado\Conditional Split.Outputs[NuevosRegistros]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="NuevosRegistros"
+                  synchronousInputId="Package\TransformacionEmpleado\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[ID_empleadoDim]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(ID_empleadoDim)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\TransformacionEmpleado\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\TransformacionEmpleado\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\TransformacionEmpleado\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\TransformacionEmpleado\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionEmpleado\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionEmpleado\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\TransformacionEmpleado\DestinoDimEmpleado"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="DestinoDimEmpleado"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"DimEmpleado"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\TransformacionEmpleado\DestinoDimEmpleado.Connections[IDbConnection]"
+                  connectionManagerID="{94E0FBF7-229D-4A8F-A940-7724B216E618}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[JEARX.stagin]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET].Columns[ID_empleado]"
+                      cachedDataType="i4"
+                      cachedName="ID_empleado"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_empleado]"
+                      lineageId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[ID_empleado]" />
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET].Columns[ID_empleado_O]"
+                      cachedDataType="i4"
+                      cachedName="ID_empleado_O"
+                      externalMetadataColumnId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_empleado_O]"
+                      lineageId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[ID_empleado_O]" />
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET].Columns[nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="nombre"
+                      externalMetadataColumnId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[nombre]"
+                      lineageId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[nombre]" />
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET].Columns[apellido1]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="apellido1"
+                      externalMetadataColumnId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[apellido1]"
+                      lineageId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[apellido1]" />
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET].Columns[puesto]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="puesto"
+                      externalMetadataColumnId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[puesto]"
+                      lineageId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[puesto]" />
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET].Columns[extension]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="extension"
+                      externalMetadataColumnId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[extension]"
+                      lineageId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[extension]" />
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET].Columns[email]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="email"
+                      externalMetadataColumnId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[email]"
+                      lineageId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[email]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_empleado]"
+                      dataType="i4"
+                      name="ID_empleado" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_empleado_O]"
+                      dataType="i4"
+                      name="ID_empleado_O" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[nombre]"
+                      dataType="wstr"
+                      length="50"
+                      name="nombre" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[apellido1]"
+                      dataType="wstr"
+                      length="50"
+                      name="apellido1" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[puesto]"
+                      dataType="wstr"
+                      length="50"
+                      name="puesto" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[extension]"
+                      dataType="wstr"
+                      length="10"
+                      name="extension" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET].ExternalColumns[email]"
+                      dataType="wstr"
+                      length="100"
+                      name="email" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\TransformacionEmpleado\DestinoDimEmpleado.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\DestinoDimEmpleado.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionEmpleado\DestinoDimEmpleado.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\DestinoDimEmpleado.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionEmpleado\DestinoDimEmpleado.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\TransformacionEmpleado\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\TransformacionEmpleado\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\Merge Join.Inputs[Merge Join Left Input].Columns[ID_empleado]"
+                      cachedDataType="i4"
+                      cachedName="ID_empleado"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\TransformacionEmpleado\SortTB_empleado.Outputs[Sort Output].Columns[ID_empleado]" />
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\Merge Join.Inputs[Merge Join Left Input].Columns[ID_empleado_O]"
+                      cachedDataType="i4"
+                      cachedName="ID_empleado_O"
+                      lineageId="Package\TransformacionEmpleado\SortTB_empleado.Outputs[Sort Output].Columns[ID_empleado_O]" />
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\Merge Join.Inputs[Merge Join Left Input].Columns[nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="nombre"
+                      lineageId="Package\TransformacionEmpleado\SortTB_empleado.Outputs[Sort Output].Columns[nombre]" />
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\Merge Join.Inputs[Merge Join Left Input].Columns[apellido1]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="apellido1"
+                      lineageId="Package\TransformacionEmpleado\SortTB_empleado.Outputs[Sort Output].Columns[apellido1]" />
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\Merge Join.Inputs[Merge Join Left Input].Columns[puesto]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="puesto"
+                      lineageId="Package\TransformacionEmpleado\SortTB_empleado.Outputs[Sort Output].Columns[puesto]" />
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\Merge Join.Inputs[Merge Join Left Input].Columns[extension]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="extension"
+                      lineageId="Package\TransformacionEmpleado\SortTB_empleado.Outputs[Sort Output].Columns[extension]" />
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\Merge Join.Inputs[Merge Join Left Input].Columns[email]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="email"
+                      lineageId="Package\TransformacionEmpleado\SortTB_empleado.Outputs[Sort Output].Columns[email]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\TransformacionEmpleado\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\Merge Join.Inputs[Merge Join Right Input].Columns[ID_empleado]"
+                      cachedDataType="i4"
+                      cachedName="ID_empleado"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\TransformacionEmpleado\SortDimEmpleado.Outputs[Sort Output].Columns[ID_empleado]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[ID_empleado]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[ID_empleado]"
+                      name="ID_empleado"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\TransformacionEmpleado\Merge Join.Inputs[Merge Join Left Input].Columns[ID_empleado]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[ID_empleado_O]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[ID_empleado_O]"
+                      name="ID_empleado_O">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\TransformacionEmpleado\Merge Join.Inputs[Merge Join Left Input].Columns[ID_empleado_O]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[nombre]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[nombre]"
+                      name="nombre">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\TransformacionEmpleado\Merge Join.Inputs[Merge Join Left Input].Columns[nombre]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[apellido1]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[apellido1]"
+                      name="apellido1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\TransformacionEmpleado\Merge Join.Inputs[Merge Join Left Input].Columns[apellido1]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[puesto]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[puesto]"
+                      name="puesto">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\TransformacionEmpleado\Merge Join.Inputs[Merge Join Left Input].Columns[puesto]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[extension]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[extension]"
+                      name="extension">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\TransformacionEmpleado\Merge Join.Inputs[Merge Join Left Input].Columns[extension]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[email]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[email]"
+                      name="email">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\TransformacionEmpleado\Merge Join.Inputs[Merge Join Left Input].Columns[email]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[ID_empleadoDim]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output].Columns[ID_empleadoDim]"
+                      name="ID_empleadoDim">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\TransformacionEmpleado\Merge Join.Inputs[Merge Join Right Input].Columns[ID_empleado]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\TransformacionEmpleado\OrigenDimEmpleado"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="OrigenDimEmpleado"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DimEmpleado"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Connections[IDbConnection]"
+                  connectionManagerID="{94E0FBF7-229D-4A8F-A940-7724B216E618}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[JEARX.stagin]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[ID_empleado]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_empleado]"
+                      lineageId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[ID_empleado]"
+                      name="ID_empleado"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[ID_empleado_O]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_empleado_O]"
+                      lineageId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[ID_empleado_O]"
+                      name="ID_empleado_O"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre]"
+                      length="50"
+                      lineageId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[nombre]"
+                      name="nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[apellido1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].ExternalColumns[apellido1]"
+                      length="50"
+                      lineageId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[apellido1]"
+                      name="apellido1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[puesto]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].ExternalColumns[puesto]"
+                      length="50"
+                      lineageId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[puesto]"
+                      name="puesto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[extension]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].ExternalColumns[extension]"
+                      length="10"
+                      lineageId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[extension]"
+                      name="extension"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[email]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].ExternalColumns[email]"
+                      length="100"
+                      lineageId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[email]"
+                      name="email"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_empleado]"
+                      dataType="i4"
+                      name="ID_empleado" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_empleado_O]"
+                      dataType="i4"
+                      name="ID_empleado_O" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre]"
+                      dataType="wstr"
+                      length="50"
+                      name="nombre" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].ExternalColumns[apellido1]"
+                      dataType="wstr"
+                      length="50"
+                      name="apellido1" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].ExternalColumns[puesto]"
+                      dataType="wstr"
+                      length="50"
+                      name="puesto" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].ExternalColumns[extension]"
+                      dataType="wstr"
+                      length="10"
+                      name="extension" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].ExternalColumns[email]"
+                      dataType="wstr"
+                      length="100"
+                      name="email" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de error de origen de ADO NET].Columns[ID_empleado]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de error de origen de ADO NET].Columns[ID_empleado]"
+                      name="ID_empleado" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de error de origen de ADO NET].Columns[ID_empleado_O]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de error de origen de ADO NET].Columns[ID_empleado_O]"
+                      name="ID_empleado_O" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de error de origen de ADO NET].Columns[nombre]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de error de origen de ADO NET].Columns[nombre]"
+                      name="nombre" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de error de origen de ADO NET].Columns[apellido1]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de error de origen de ADO NET].Columns[apellido1]"
+                      name="apellido1" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de error de origen de ADO NET].Columns[puesto]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de error de origen de ADO NET].Columns[puesto]"
+                      name="puesto" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de error de origen de ADO NET].Columns[extension]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de error de origen de ADO NET].Columns[extension]"
+                      name="extension" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de error de origen de ADO NET].Columns[email]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de error de origen de ADO NET].Columns[email]"
+                      name="email" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\TransformacionEmpleado\OrigenTB_empleado"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="OrigenTB_empleado"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."TB_empleado"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\TransformacionEmpleado\OrigenTB_empleado.Connections[IDbConnection]"
+                  connectionManagerID="{94E0FBF7-229D-4A8F-A940-7724B216E618}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[JEARX.stagin]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[ID_empleado]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_empleado]"
+                      lineageId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[ID_empleado]"
+                      name="ID_empleado"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[ID_empleado_O]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_empleado_O]"
+                      lineageId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[ID_empleado_O]"
+                      name="ID_empleado_O"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre]"
+                      length="50"
+                      lineageId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[nombre]"
+                      name="nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[apellido1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].ExternalColumns[apellido1]"
+                      length="50"
+                      lineageId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[apellido1]"
+                      name="apellido1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[puesto]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].ExternalColumns[puesto]"
+                      length="50"
+                      lineageId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[puesto]"
+                      name="puesto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[extension]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].ExternalColumns[extension]"
+                      length="10"
+                      lineageId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[extension]"
+                      name="extension"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[email]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].ExternalColumns[email]"
+                      length="100"
+                      lineageId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[email]"
+                      name="email"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_empleado]"
+                      dataType="i4"
+                      name="ID_empleado" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_empleado_O]"
+                      dataType="i4"
+                      name="ID_empleado_O" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre]"
+                      dataType="wstr"
+                      length="50"
+                      name="nombre" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].ExternalColumns[apellido1]"
+                      dataType="wstr"
+                      length="50"
+                      name="apellido1" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].ExternalColumns[puesto]"
+                      dataType="wstr"
+                      length="50"
+                      name="puesto" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].ExternalColumns[extension]"
+                      dataType="wstr"
+                      length="10"
+                      name="extension" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].ExternalColumns[email]"
+                      dataType="wstr"
+                      length="100"
+                      name="email" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de error de origen de ADO NET].Columns[ID_empleado]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de error de origen de ADO NET].Columns[ID_empleado]"
+                      name="ID_empleado" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de error de origen de ADO NET].Columns[ID_empleado_O]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de error de origen de ADO NET].Columns[ID_empleado_O]"
+                      name="ID_empleado_O" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de error de origen de ADO NET].Columns[nombre]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de error de origen de ADO NET].Columns[nombre]"
+                      name="nombre" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de error de origen de ADO NET].Columns[apellido1]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de error de origen de ADO NET].Columns[apellido1]"
+                      name="apellido1" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de error de origen de ADO NET].Columns[puesto]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de error de origen de ADO NET].Columns[puesto]"
+                      name="puesto" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de error de origen de ADO NET].Columns[extension]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de error de origen de ADO NET].Columns[extension]"
+                      name="extension" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de error de origen de ADO NET].Columns[email]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de error de origen de ADO NET].Columns[email]"
+                      name="email" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\TransformacionEmpleado\SortDimEmpleado"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="SortDimEmpleado"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\TransformacionEmpleado\SortDimEmpleado.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\SortDimEmpleado.Inputs[Sort Input].Columns[ID_empleado]"
+                      cachedDataType="i4"
+                      cachedName="ID_empleado"
+                      lineageId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[ID_empleado]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\SortDimEmpleado.Inputs[Sort Input].Columns[ID_empleado_O]"
+                      cachedDataType="i4"
+                      cachedName="ID_empleado_O"
+                      lineageId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[ID_empleado_O]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\SortDimEmpleado.Inputs[Sort Input].Columns[nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="nombre"
+                      lineageId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[nombre]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\SortDimEmpleado.Inputs[Sort Input].Columns[apellido1]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="apellido1"
+                      lineageId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[apellido1]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\SortDimEmpleado.Inputs[Sort Input].Columns[puesto]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="puesto"
+                      lineageId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[puesto]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\SortDimEmpleado.Inputs[Sort Input].Columns[extension]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="extension"
+                      lineageId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[extension]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\SortDimEmpleado.Inputs[Sort Input].Columns[email]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="email"
+                      lineageId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[email]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\TransformacionEmpleado\SortDimEmpleado.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\SortDimEmpleado.Outputs[Sort Output].Columns[ID_empleado]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionEmpleado\SortDimEmpleado.Outputs[Sort Output].Columns[ID_empleado]"
+                      name="ID_empleado"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[ID_empleado]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\SortDimEmpleado.Outputs[Sort Output].Columns[ID_empleado_O]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionEmpleado\SortDimEmpleado.Outputs[Sort Output].Columns[ID_empleado_O]"
+                      name="ID_empleado_O">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[ID_empleado_O]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\SortDimEmpleado.Outputs[Sort Output].Columns[nombre]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\TransformacionEmpleado\SortDimEmpleado.Outputs[Sort Output].Columns[nombre]"
+                      name="nombre">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[nombre]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\SortDimEmpleado.Outputs[Sort Output].Columns[apellido1]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\TransformacionEmpleado\SortDimEmpleado.Outputs[Sort Output].Columns[apellido1]"
+                      name="apellido1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[apellido1]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\SortDimEmpleado.Outputs[Sort Output].Columns[puesto]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\TransformacionEmpleado\SortDimEmpleado.Outputs[Sort Output].Columns[puesto]"
+                      name="puesto">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[puesto]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\SortDimEmpleado.Outputs[Sort Output].Columns[extension]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\TransformacionEmpleado\SortDimEmpleado.Outputs[Sort Output].Columns[extension]"
+                      name="extension">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[extension]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\SortDimEmpleado.Outputs[Sort Output].Columns[email]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\TransformacionEmpleado\SortDimEmpleado.Outputs[Sort Output].Columns[email]"
+                      name="email">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET].Columns[email]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\TransformacionEmpleado\SortTB_empleado"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="SortTB_empleado"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\TransformacionEmpleado\SortTB_empleado.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\SortTB_empleado.Inputs[Sort Input].Columns[ID_empleado]"
+                      cachedDataType="i4"
+                      cachedName="ID_empleado"
+                      lineageId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[ID_empleado]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\SortTB_empleado.Inputs[Sort Input].Columns[ID_empleado_O]"
+                      cachedDataType="i4"
+                      cachedName="ID_empleado_O"
+                      lineageId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[ID_empleado_O]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\SortTB_empleado.Inputs[Sort Input].Columns[nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="nombre"
+                      lineageId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[nombre]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\SortTB_empleado.Inputs[Sort Input].Columns[apellido1]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="apellido1"
+                      lineageId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[apellido1]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\SortTB_empleado.Inputs[Sort Input].Columns[puesto]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="puesto"
+                      lineageId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[puesto]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\SortTB_empleado.Inputs[Sort Input].Columns[extension]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="extension"
+                      lineageId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[extension]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformacionEmpleado\SortTB_empleado.Inputs[Sort Input].Columns[email]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="email"
+                      lineageId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[email]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\TransformacionEmpleado\SortTB_empleado.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\SortTB_empleado.Outputs[Sort Output].Columns[ID_empleado]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionEmpleado\SortTB_empleado.Outputs[Sort Output].Columns[ID_empleado]"
+                      name="ID_empleado"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[ID_empleado]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\SortTB_empleado.Outputs[Sort Output].Columns[ID_empleado_O]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionEmpleado\SortTB_empleado.Outputs[Sort Output].Columns[ID_empleado_O]"
+                      name="ID_empleado_O">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[ID_empleado_O]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\SortTB_empleado.Outputs[Sort Output].Columns[nombre]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\TransformacionEmpleado\SortTB_empleado.Outputs[Sort Output].Columns[nombre]"
+                      name="nombre">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[nombre]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\SortTB_empleado.Outputs[Sort Output].Columns[apellido1]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\TransformacionEmpleado\SortTB_empleado.Outputs[Sort Output].Columns[apellido1]"
+                      name="apellido1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[apellido1]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\SortTB_empleado.Outputs[Sort Output].Columns[puesto]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\TransformacionEmpleado\SortTB_empleado.Outputs[Sort Output].Columns[puesto]"
+                      name="puesto">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[puesto]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\SortTB_empleado.Outputs[Sort Output].Columns[extension]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\TransformacionEmpleado\SortTB_empleado.Outputs[Sort Output].Columns[extension]"
+                      name="extension">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[extension]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformacionEmpleado\SortTB_empleado.Outputs[Sort Output].Columns[email]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\TransformacionEmpleado\SortTB_empleado.Outputs[Sort Output].Columns[email]"
+                      name="email">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET].Columns[email]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\TransformacionEmpleado.Paths[Merge Join Output]"
+              endId="Package\TransformacionEmpleado\Conditional Split.Inputs[Conditional Split Input]"
+              name="Merge Join Output"
+              startId="Package\TransformacionEmpleado\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\TransformacionEmpleado.Paths[NuevosRegistros]"
+              endId="Package\TransformacionEmpleado\DestinoDimEmpleado.Inputs[Entrada de destino de ADO NET]"
+              name="NuevosRegistros"
+              startId="Package\TransformacionEmpleado\Conditional Split.Outputs[NuevosRegistros]" />
+            <path
+              refId="Package\TransformacionEmpleado.Paths[Salida de origen de ADO NET]"
+              endId="Package\TransformacionEmpleado\SortTB_empleado.Inputs[Sort Input]"
+              name="Salida de origen de ADO NET"
+              startId="Package\TransformacionEmpleado\OrigenTB_empleado.Outputs[Salida de origen de ADO NET]" />
+            <path
+              refId="Package\TransformacionEmpleado.Paths[Salida de origen de ADO NET1]"
+              endId="Package\TransformacionEmpleado\SortDimEmpleado.Inputs[Sort Input]"
+              name="Salida de origen de ADO NET"
+              startId="Package\TransformacionEmpleado\OrigenDimEmpleado.Outputs[Salida de origen de ADO NET]" />
+            <path
+              refId="Package\TransformacionEmpleado.Paths[Sort Output]"
+              endId="Package\TransformacionEmpleado\Merge Join.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\TransformacionEmpleado\SortTB_empleado.Outputs[Sort Output]" />
+            <path
+              refId="Package\TransformacionEmpleado.Paths[Sort Output1]"
+              endId="Package\TransformacionEmpleado\Merge Join.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\TransformacionEmpleado\SortDimEmpleado.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -6103,6 +7557,14 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Restricción 3"
       DTS:To="Package\TransformarOficina" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{8DAE1185-CFBE-4EFD-B1EB-DC7A5A306EA2}"
+      DTS:From="Package\TransformarOficina"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 4"
+      DTS:To="Package\TransformacionEmpleado" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
@@ -6216,6 +7678,44 @@
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="205,42"
+          Id="Package\TransformacionEmpleado"
+          TopLeft="297,337" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 4]"
+          TopLeft="356.5,303">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="43,34"
+              Start="0,0"
+              End="43,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13"
+                    Point2="0,17"
+                    Point3="4,17" />
+                  <mssgle:LineSegment
+                    End="39,17" />
+                  <mssgle:CubicBezierSegment
+                    Point1="39,17"
+                    Point2="43,17"
+                    Point3="43,21" />
+                  <mssgle:LineSegment
+                    End="43,26.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -7257,6 +8757,260 @@
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\TransformarOficina\OrigenDimOficina">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\TransformacionEmpleado">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="181,42"
+          Id="Package\TransformacionEmpleado\OrigenTB_empleado"
+          TopLeft="109,59" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\TransformacionEmpleado\DestinoDimEmpleado"
+          TopLeft="318,366" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\TransformacionEmpleado\OrigenDimEmpleado"
+          TopLeft="447,55" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\TransformacionEmpleado\SortTB_empleado"
+          TopLeft="146,148" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\TransformacionEmpleado\SortDimEmpleado"
+          TopLeft="488,144" />
+        <EdgeLayout
+          Id="Package\TransformacionEmpleado.Paths[Salida de origen de ADO NET]"
+          TopLeft="199.5,101">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="30.5,47"
+              Start="0,0"
+              End="30.5,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.5"
+                    Point2="0,23.5"
+                    Point3="4,23.5" />
+                  <mssgle:LineSegment
+                    End="26.5,23.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="26.5,23.5"
+                    Point2="30.5,23.5"
+                    Point3="30.5,27.5" />
+                  <mssgle:LineSegment
+                    End="30.5,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\TransformacionEmpleado.Paths[Salida de origen de ADO NET1]"
+          TopLeft="537.5,97">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="34.5,47"
+              Start="0,0"
+              End="34.5,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.5"
+                    Point2="0,23.5"
+                    Point3="4,23.5" />
+                  <mssgle:LineSegment
+                    End="30.5,23.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="30.5,23.5"
+                    Point2="34.5,23.5"
+                    Point3="34.5,27.5" />
+                  <mssgle:LineSegment
+                    End="34.5,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="133,42"
+          Id="Package\TransformacionEmpleado\Merge Join"
+          TopLeft="329,230" />
+        <EdgeLayout
+          Id="Package\TransformacionEmpleado.Paths[Sort Output]"
+          TopLeft="230,190">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="165.5,40"
+              Start="0,0"
+              End="165.5,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16"
+                    Point2="0,20"
+                    Point3="4,20" />
+                  <mssgle:LineSegment
+                    End="161.5,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="161.5,20"
+                    Point2="165.5,20"
+                    Point3="165.5,24" />
+                  <mssgle:LineSegment
+                    End="165.5,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\TransformacionEmpleado.Paths[Sort Output1]"
+          TopLeft="572,186">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-155.666666666667,44"
+              Start="0,0"
+              End="-155.666666666667,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.0861812778603" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.0861812778603"
+                    Point2="0,26.0861812778603"
+                    Point3="-4,26.0861812778603" />
+                  <mssgle:LineSegment
+                    End="-151.666666666667,26.0861812778603" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-151.666666666667,26.0861812778603"
+                    Point2="-155.666666666667,26.0861812778603"
+                    Point3="-155.666666666667,30.0861812778603" />
+                  <mssgle:LineSegment
+                    End="-155.666666666667,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="159,42"
+          Id="Package\TransformacionEmpleado\Conditional Split"
+          TopLeft="327,298" />
+        <EdgeLayout
+          Id="Package\TransformacionEmpleado.Paths[Merge Join Output]"
+          TopLeft="395.5,272">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="11,26"
+              Start="0,0"
+              End="11,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9"
+                    Point2="0,13"
+                    Point3="4,13" />
+                  <mssgle:LineSegment
+                    End="7,13" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7,13"
+                    Point2="11,13"
+                    Point3="11,17" />
+                  <mssgle:LineSegment
+                    End="11,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\TransformacionEmpleado.Paths[NuevosRegistros]"
+          TopLeft="408.75,340">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-37.017578125,3.5576171875,74.03515625,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\TransformacionEmpleado\OrigenTB_empleado">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\TransformacionEmpleado\DestinoDimEmpleado">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\TransformacionEmpleado\OrigenDimEmpleado">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
