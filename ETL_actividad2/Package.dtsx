@@ -11,8 +11,8 @@
   DTS:LocaleID="9226"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="33"
-  DTS:VersionGUID="{DF09C328-2349-4633-8623-141A8ADAE199}">
+  DTS:VersionBuild="45"
+  DTS:VersionGUID="{0DC8244E-0FA3-40B9-AD2D-357DFB73CCE1}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -3401,6 +3401,410 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\TransformacionProducto"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{39179CAA-50F1-4EAD-A64D-2F030B2C1015}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TransformacionProducto"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\TransformacionProducto\DestinoDimProducto"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="DestinoDimProducto"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"DimProducto"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\TransformacionProducto\DestinoDimProducto.Connections[IDbConnection]"
+                  connectionManagerID="{94E0FBF7-229D-4A8F-A940-7724B216E618}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[JEARX.stagin]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET].Columns[ID_producto]"
+                      cachedDataType="i4"
+                      cachedName="ID_producto"
+                      externalMetadataColumnId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_producto]"
+                      lineageId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].Columns[ID_producto]" />
+                    <inputColumn
+                      refId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET].Columns[ID_producto_O]"
+                      cachedDataType="i4"
+                      cachedName="ID_producto_O"
+                      externalMetadataColumnId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_producto_O]"
+                      lineageId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].Columns[ID_producto_O]" />
+                    <inputColumn
+                      refId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET].Columns[CodigoProducto]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="CodigoProducto"
+                      externalMetadataColumnId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoProducto]"
+                      lineageId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].Columns[CodigoProducto]" />
+                    <inputColumn
+                      refId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET].Columns[nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="70"
+                      cachedName="nombre"
+                      externalMetadataColumnId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[nombre]"
+                      lineageId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].Columns[nombre]" />
+                    <inputColumn
+                      refId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET].Columns[Categoria]"
+                      cachedDataType="i4"
+                      cachedName="Categoria"
+                      externalMetadataColumnId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[Categoria]"
+                      lineageId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].Columns[Categoria]" />
+                    <inputColumn
+                      refId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET].Columns[precio_venta]"
+                      cachedDataType="numeric"
+                      cachedName="precio_venta"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[precio_venta]"
+                      lineageId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].Columns[precio_venta]" />
+                    <inputColumn
+                      refId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET].Columns[proveedor]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="proveedor"
+                      externalMetadataColumnId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[proveedor]"
+                      lineageId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].Columns[proveedor]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_producto]"
+                      dataType="i4"
+                      name="ID_producto" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_producto_O]"
+                      dataType="i4"
+                      name="ID_producto_O" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[CodigoProducto]"
+                      dataType="wstr"
+                      length="15"
+                      name="CodigoProducto" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[nombre]"
+                      dataType="wstr"
+                      length="70"
+                      name="nombre" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[Categoria]"
+                      dataType="i4"
+                      name="Categoria" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[precio_venta]"
+                      dataType="numeric"
+                      name="precio_venta"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[proveedor]"
+                      dataType="wstr"
+                      length="50"
+                      name="proveedor" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\TransformacionProducto\DestinoDimProducto.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TransformacionProducto\DestinoDimProducto.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionProducto\DestinoDimProducto.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\TransformacionProducto\DestinoDimProducto.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionProducto\DestinoDimProducto.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\TransformacionProducto\OrigenTB_producto"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="OrigenTB_producto"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."TB_producto"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\TransformacionProducto\OrigenTB_producto.Connections[IDbConnection]"
+                  connectionManagerID="{94E0FBF7-229D-4A8F-A940-7724B216E618}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[JEARX.stagin]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].Columns[ID_producto]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_producto]"
+                      lineageId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].Columns[ID_producto]"
+                      name="ID_producto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].Columns[ID_producto_O]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_producto_O]"
+                      lineageId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].Columns[ID_producto_O]"
+                      name="ID_producto_O"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].Columns[CodigoProducto]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoProducto]"
+                      length="15"
+                      lineageId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].Columns[CodigoProducto]"
+                      name="CodigoProducto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].Columns[nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre]"
+                      length="70"
+                      lineageId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].Columns[nombre]"
+                      name="nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].Columns[Categoria]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].ExternalColumns[Categoria]"
+                      lineageId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].Columns[Categoria]"
+                      name="Categoria"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].Columns[precio_venta]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].ExternalColumns[precio_venta]"
+                      lineageId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].Columns[precio_venta]"
+                      name="precio_venta"
+                      precision="15"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].Columns[proveedor]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].ExternalColumns[proveedor]"
+                      length="50"
+                      lineageId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].Columns[proveedor]"
+                      name="proveedor"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_producto]"
+                      dataType="i4"
+                      name="ID_producto" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_producto_O]"
+                      dataType="i4"
+                      name="ID_producto_O" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].ExternalColumns[CodigoProducto]"
+                      dataType="wstr"
+                      length="15"
+                      name="CodigoProducto" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre]"
+                      dataType="wstr"
+                      length="70"
+                      name="nombre" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].ExternalColumns[Categoria]"
+                      dataType="i4"
+                      name="Categoria" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].ExternalColumns[precio_venta]"
+                      dataType="numeric"
+                      name="precio_venta"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET].ExternalColumns[proveedor]"
+                      dataType="wstr"
+                      length="50"
+                      name="proveedor" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de error de origen de ADO NET].Columns[ID_producto]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de error de origen de ADO NET].Columns[ID_producto]"
+                      name="ID_producto" />
+                    <outputColumn
+                      refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de error de origen de ADO NET].Columns[ID_producto_O]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de error de origen de ADO NET].Columns[ID_producto_O]"
+                      name="ID_producto_O" />
+                    <outputColumn
+                      refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de error de origen de ADO NET].Columns[CodigoProducto]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de error de origen de ADO NET].Columns[CodigoProducto]"
+                      name="CodigoProducto" />
+                    <outputColumn
+                      refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de error de origen de ADO NET].Columns[nombre]"
+                      dataType="wstr"
+                      length="70"
+                      lineageId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de error de origen de ADO NET].Columns[nombre]"
+                      name="nombre" />
+                    <outputColumn
+                      refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de error de origen de ADO NET].Columns[Categoria]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de error de origen de ADO NET].Columns[Categoria]"
+                      name="Categoria" />
+                    <outputColumn
+                      refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de error de origen de ADO NET].Columns[precio_venta]"
+                      dataType="numeric"
+                      lineageId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de error de origen de ADO NET].Columns[precio_venta]"
+                      name="precio_venta"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de error de origen de ADO NET].Columns[proveedor]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de error de origen de ADO NET].Columns[proveedor]"
+                      name="proveedor" />
+                    <outputColumn
+                      refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\TransformacionProducto.Paths[Salida de origen de ADO NET]"
+              endId="Package\TransformacionProducto\DestinoDimProducto.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de ADO NET"
+              startId="Package\TransformacionProducto\OrigenTB_producto.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\TransformarClientes"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
@@ -6323,130 +6727,6 @@
           version="1">
           <components>
             <component
-              refId="Package\TransformarTiempo\columnasDIMtiempo"
-              componentClassID="Microsoft.DerivedColumn"
-              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-              name="columnasDIMtiempo"
-              usesDispositions="true">
-              <inputs>
-                <input
-                  refId="Package\TransformarTiempo\columnasDIMtiempo.Inputs[Derived Column Input]"
-                  description="Input to the Derived Column Transformation"
-                  name="Derived Column Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\TransformarTiempo\columnasDIMtiempo.Inputs[Derived Column Input].Columns[fecha_entrega]"
-                      cachedDataType="dbDate"
-                      cachedName="fecha_entrega"
-                      lineageId="Package\TransformarTiempo\OrigenTB_fecha.Outputs[Salida de origen de ADO NET].Columns[fecha_entrega]" />
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\TransformarTiempo\columnasDIMtiempo.Outputs[Derived Column Output]"
-                  description="Default Output of the Derived Column Transformation"
-                  exclusionGroup="1"
-                  name="Derived Column Output"
-                  synchronousInputId="Package\TransformarTiempo\columnasDIMtiempo.Inputs[Derived Column Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\TransformarTiempo\columnasDIMtiempo.Outputs[Derived Column Output].Columns[Anio]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Computation"
-                      errorRowDisposition="FailComponent"
-                      lineageId="Package\TransformarTiempo\columnasDIMtiempo.Outputs[Derived Column Output].Columns[Anio]"
-                      name="Anio"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Expression"
-                          name="Expression">[YEAR](#{Package\TransformarTiempo\OrigenTB_fecha.Outputs[Salida de origen de ADO NET].Columns[fecha_entrega]})</property>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Friendly Expression"
-                          expressionType="Notify"
-                          name="FriendlyExpression">YEAR(fecha_entrega)</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\TransformarTiempo\columnasDIMtiempo.Outputs[Derived Column Output].Columns[Mes]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Computation"
-                      errorRowDisposition="FailComponent"
-                      lineageId="Package\TransformarTiempo\columnasDIMtiempo.Outputs[Derived Column Output].Columns[Mes]"
-                      name="Mes"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Expression"
-                          name="Expression">[MONTH](#{Package\TransformarTiempo\OrigenTB_fecha.Outputs[Salida de origen de ADO NET].Columns[fecha_entrega]})</property>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Friendly Expression"
-                          expressionType="Notify"
-                          name="FriendlyExpression">MONTH(fecha_entrega)</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\TransformarTiempo\columnasDIMtiempo.Outputs[Derived Column Output].Columns[Dia]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Computation"
-                      errorRowDisposition="FailComponent"
-                      lineageId="Package\TransformarTiempo\columnasDIMtiempo.Outputs[Derived Column Output].Columns[Dia]"
-                      name="Dia"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Expression"
-                          name="Expression">[DAY](#{Package\TransformarTiempo\OrigenTB_fecha.Outputs[Salida de origen de ADO NET].Columns[fecha_entrega]})</property>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Friendly Expression"
-                          expressionType="Notify"
-                          name="FriendlyExpression">DAY(fecha_entrega)</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\TransformarTiempo\columnasDIMtiempo.Outputs[Derived Column Error Output]"
-                  description="Error Output of the Derived Column Transformation"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Derived Column Error Output"
-                  synchronousInputId="Package\TransformarTiempo\columnasDIMtiempo.Inputs[Derived Column Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\TransformarTiempo\columnasDIMtiempo.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\TransformarTiempo\columnasDIMtiempo.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\TransformarTiempo\columnasDIMtiempo.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\TransformarTiempo\columnasDIMtiempo.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
               refId="Package\TransformarTiempo\Conditional Split"
               componentClassID="Microsoft.ConditionalSplit"
               contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
@@ -6536,6 +6816,130 @@
               </outputs>
             </component>
             <component
+              refId="Package\TransformarTiempo\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\TransformarTiempo\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\TransformarTiempo\Derived Column.Inputs[Derived Column Input].Columns[fecha_entrega]"
+                      cachedDataType="dbDate"
+                      cachedName="fecha_entrega"
+                      lineageId="Package\TransformarTiempo\OrigenTB_fecha.Outputs[Salida de origen de ADO NET].Columns[fecha_entrega]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\TransformarTiempo\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\TransformarTiempo\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TransformarTiempo\Derived Column.Outputs[Derived Column Output].Columns[Anio]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\TransformarTiempo\Derived Column.Outputs[Derived Column Output].Columns[Anio]"
+                      name="Anio"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[YEAR](#{Package\TransformarTiempo\OrigenTB_fecha.Outputs[Salida de origen de ADO NET].Columns[fecha_entrega]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">YEAR(fecha_entrega)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformarTiempo\Derived Column.Outputs[Derived Column Output].Columns[Mes]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\TransformarTiempo\Derived Column.Outputs[Derived Column Output].Columns[Mes]"
+                      name="Mes"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[MONTH](#{Package\TransformarTiempo\OrigenTB_fecha.Outputs[Salida de origen de ADO NET].Columns[fecha_entrega]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">MONTH(fecha_entrega)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformarTiempo\Derived Column.Outputs[Derived Column Output].Columns[Dia]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\TransformarTiempo\Derived Column.Outputs[Derived Column Output].Columns[Dia]"
+                      name="Dia"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[DAY](#{Package\TransformarTiempo\OrigenTB_fecha.Outputs[Salida de origen de ADO NET].Columns[fecha_entrega]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">DAY(fecha_entrega)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\TransformarTiempo\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\TransformarTiempo\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TransformarTiempo\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\TransformarTiempo\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\TransformarTiempo\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\TransformarTiempo\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\TransformarTiempo\DestinoDimTiempo"
               componentClassID="Microsoft.ManagedComponentHost"
               contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
@@ -6592,6 +6996,12 @@
                       externalMetadataColumnId="Package\TransformarTiempo\DestinoDimTiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_fecha]"
                       lineageId="Package\TransformarTiempo\Merge Join.Outputs[Merge Join Output].Columns[ID_fecha]" />
                     <inputColumn
+                      refId="Package\TransformarTiempo\DestinoDimTiempo.Inputs[Entrada de destino de ADO NET].Columns[fecha_entrega]"
+                      cachedDataType="dbDate"
+                      cachedName="fecha_entrega"
+                      externalMetadataColumnId="Package\TransformarTiempo\DestinoDimTiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[fecha_entrega]"
+                      lineageId="Package\TransformarTiempo\Merge Join.Outputs[Merge Join Output].Columns[fecha_entrega]" />
+                    <inputColumn
                       refId="Package\TransformarTiempo\DestinoDimTiempo.Inputs[Entrada de destino de ADO NET].Columns[Anio]"
                       cachedDataType="i4"
                       cachedName="Anio"
@@ -6609,12 +7019,6 @@
                       cachedName="Dia"
                       externalMetadataColumnId="Package\TransformarTiempo\DestinoDimTiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Dia]"
                       lineageId="Package\TransformarTiempo\Merge Join.Outputs[Merge Join Output].Columns[Dia]" />
-                    <inputColumn
-                      refId="Package\TransformarTiempo\DestinoDimTiempo.Inputs[Entrada de destino de ADO NET].Columns[fecha_entrega]"
-                      cachedDataType="dbDate"
-                      cachedName="fecha_entrega"
-                      externalMetadataColumnId="Package\TransformarTiempo\DestinoDimTiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[fecha]"
-                      lineageId="Package\TransformarTiempo\Merge Join.Outputs[Merge Join Output].Columns[fecha_entrega]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -6623,9 +7027,9 @@
                       dataType="i4"
                       name="ID_fecha" />
                     <externalMetadataColumn
-                      refId="Package\TransformarTiempo\DestinoDimTiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[fecha]"
+                      refId="Package\TransformarTiempo\DestinoDimTiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[fecha_entrega]"
                       dataType="dbTimeStamp"
-                      name="fecha" />
+                      name="fecha_entrega" />
                     <externalMetadataColumn
                       refId="Package\TransformarTiempo\DestinoDimTiempo.Inputs[Entrada de destino de ADO NET].ExternalColumns[Anio]"
                       dataType="i4"
@@ -6703,27 +7107,27 @@
                       cachedDataType="i4"
                       cachedName="ID_fecha"
                       cachedSortKeyPosition="1"
-                      lineageId="Package\TransformarTiempo\SortTbTiempoSt.Outputs[Sort Output].Columns[ID_fecha]" />
+                      lineageId="Package\TransformarTiempo\SortTB_Fecha.Outputs[Sort Output].Columns[ID_fecha]" />
                     <inputColumn
                       refId="Package\TransformarTiempo\Merge Join.Inputs[Merge Join Left Input].Columns[fecha_entrega]"
                       cachedDataType="dbDate"
                       cachedName="fecha_entrega"
-                      lineageId="Package\TransformarTiempo\SortTbTiempoSt.Outputs[Sort Output].Columns[fecha_entrega]" />
+                      lineageId="Package\TransformarTiempo\SortTB_Fecha.Outputs[Sort Output].Columns[fecha_entrega]" />
                     <inputColumn
                       refId="Package\TransformarTiempo\Merge Join.Inputs[Merge Join Left Input].Columns[Anio]"
                       cachedDataType="i4"
                       cachedName="Anio"
-                      lineageId="Package\TransformarTiempo\SortTbTiempoSt.Outputs[Sort Output].Columns[Anio]" />
+                      lineageId="Package\TransformarTiempo\SortTB_Fecha.Outputs[Sort Output].Columns[Anio]" />
                     <inputColumn
                       refId="Package\TransformarTiempo\Merge Join.Inputs[Merge Join Left Input].Columns[Mes]"
                       cachedDataType="i4"
                       cachedName="Mes"
-                      lineageId="Package\TransformarTiempo\SortTbTiempoSt.Outputs[Sort Output].Columns[Mes]" />
+                      lineageId="Package\TransformarTiempo\SortTB_Fecha.Outputs[Sort Output].Columns[Mes]" />
                     <inputColumn
                       refId="Package\TransformarTiempo\Merge Join.Inputs[Merge Join Left Input].Columns[Dia]"
                       cachedDataType="i4"
                       cachedName="Dia"
-                      lineageId="Package\TransformarTiempo\SortTbTiempoSt.Outputs[Sort Output].Columns[Dia]" />
+                      lineageId="Package\TransformarTiempo\SortTB_Fecha.Outputs[Sort Output].Columns[Dia]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -6893,13 +7297,13 @@
                       name="ID_fecha"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\TransformarTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[fecha]"
+                      refId="Package\TransformarTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[fecha_entrega]"
                       dataType="dbDate"
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\TransformarTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].ExternalColumns[fecha]"
-                      lineageId="Package\TransformarTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[fecha]"
-                      name="fecha"
+                      externalMetadataColumnId="Package\TransformarTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].ExternalColumns[fecha_entrega]"
+                      lineageId="Package\TransformarTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[fecha_entrega]"
+                      name="fecha_entrega"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\TransformarTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[Anio]"
@@ -6936,9 +7340,9 @@
                       dataType="i4"
                       name="ID_fecha" />
                     <externalMetadataColumn
-                      refId="Package\TransformarTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].ExternalColumns[fecha]"
+                      refId="Package\TransformarTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].ExternalColumns[fecha_entrega]"
                       dataType="dbDate"
-                      name="fecha" />
+                      name="fecha_entrega" />
                     <externalMetadataColumn
                       refId="Package\TransformarTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].ExternalColumns[Anio]"
                       dataType="i4"
@@ -6964,10 +7368,10 @@
                       lineageId="Package\TransformarTiempo\OrigenDimTiempo.Outputs[Salida de error de origen de ADO NET].Columns[ID_fecha]"
                       name="ID_fecha" />
                     <outputColumn
-                      refId="Package\TransformarTiempo\OrigenDimTiempo.Outputs[Salida de error de origen de ADO NET].Columns[fecha]"
+                      refId="Package\TransformarTiempo\OrigenDimTiempo.Outputs[Salida de error de origen de ADO NET].Columns[fecha_entrega]"
                       dataType="dbDate"
-                      lineageId="Package\TransformarTiempo\OrigenDimTiempo.Outputs[Salida de error de origen de ADO NET].Columns[fecha]"
-                      name="fecha" />
+                      lineageId="Package\TransformarTiempo\OrigenDimTiempo.Outputs[Salida de error de origen de ADO NET].Columns[fecha_entrega]"
+                      name="fecha_entrega" />
                     <outputColumn
                       refId="Package\TransformarTiempo\OrigenDimTiempo.Outputs[Salida de error de origen de ADO NET].Columns[Anio]"
                       dataType="i4"
@@ -7014,7 +7418,10 @@
                   description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">DELETE FROM TB_fecha
+WHERE        [fecha_entrega] IS NULL;
+                             SELECT        *
+                              FROM            TB_fecha</property>
                 <property
                   dataType="System.Int32"
                   description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
@@ -7033,7 +7440,7 @@
                   dataType="System.Int32"
                   description="Especificar el modo de recuperar información de columnas externas"
                   name="AccessMode"
-                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
                 <property
                   dataType="System.String"
                   name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
@@ -7154,10 +7561,10 @@
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\TransformarTiempo\SortDimTiempo.Inputs[Sort Input].Columns[fecha]"
+                      refId="Package\TransformarTiempo\SortDimTiempo.Inputs[Sort Input].Columns[fecha_entrega]"
                       cachedDataType="dbDate"
-                      cachedName="fecha"
-                      lineageId="Package\TransformarTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[fecha]">
+                      cachedName="fecha_entrega"
+                      lineageId="Package\TransformarTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[fecha_entrega]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -7242,16 +7649,16 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\TransformarTiempo\SortDimTiempo.Outputs[Sort Output].Columns[fecha]"
+                      refId="Package\TransformarTiempo\SortDimTiempo.Outputs[Sort Output].Columns[fecha_entrega]"
                       dataType="dbDate"
-                      lineageId="Package\TransformarTiempo\SortDimTiempo.Outputs[Sort Output].Columns[fecha]"
-                      name="fecha">
+                      lineageId="Package\TransformarTiempo\SortDimTiempo.Outputs[Sort Output].Columns[fecha_entrega]"
+                      name="fecha_entrega">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\TransformarTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[fecha]}</property>
+                          name="SortColumnId">#{Package\TransformarTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[fecha_entrega]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -7299,11 +7706,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\TransformarTiempo\SortTbTiempoSt"
+              refId="Package\TransformarTiempo\SortTB_Fecha"
               componentClassID="Microsoft.Sort"
               contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
-              name="SortTbTiempoSt"
+              name="SortTB_Fecha"
               version="1">
               <properties>
                 <property
@@ -7318,11 +7725,11 @@
               </properties>
               <inputs>
                 <input
-                  refId="Package\TransformarTiempo\SortTbTiempoSt.Inputs[Sort Input]"
+                  refId="Package\TransformarTiempo\SortTB_Fecha.Inputs[Sort Input]"
                   name="Sort Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\TransformarTiempo\SortTbTiempoSt.Inputs[Sort Input].Columns[ID_fecha]"
+                      refId="Package\TransformarTiempo\SortTB_Fecha.Inputs[Sort Input].Columns[ID_fecha]"
                       cachedDataType="i4"
                       cachedName="ID_fecha"
                       lineageId="Package\TransformarTiempo\OrigenTB_fecha.Outputs[Salida de origen de ADO NET].Columns[ID_fecha]">
@@ -7338,7 +7745,7 @@
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\TransformarTiempo\SortTbTiempoSt.Inputs[Sort Input].Columns[fecha_entrega]"
+                      refId="Package\TransformarTiempo\SortTB_Fecha.Inputs[Sort Input].Columns[fecha_entrega]"
                       cachedDataType="dbDate"
                       cachedName="fecha_entrega"
                       lineageId="Package\TransformarTiempo\OrigenTB_fecha.Outputs[Salida de origen de ADO NET].Columns[fecha_entrega]">
@@ -7354,10 +7761,10 @@
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\TransformarTiempo\SortTbTiempoSt.Inputs[Sort Input].Columns[Anio]"
+                      refId="Package\TransformarTiempo\SortTB_Fecha.Inputs[Sort Input].Columns[Anio]"
                       cachedDataType="i4"
                       cachedName="Anio"
-                      lineageId="Package\TransformarTiempo\columnasDIMtiempo.Outputs[Derived Column Output].Columns[Anio]">
+                      lineageId="Package\TransformarTiempo\Derived Column.Outputs[Derived Column Output].Columns[Anio]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -7370,10 +7777,10 @@
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\TransformarTiempo\SortTbTiempoSt.Inputs[Sort Input].Columns[Mes]"
+                      refId="Package\TransformarTiempo\SortTB_Fecha.Inputs[Sort Input].Columns[Mes]"
                       cachedDataType="i4"
                       cachedName="Mes"
-                      lineageId="Package\TransformarTiempo\columnasDIMtiempo.Outputs[Derived Column Output].Columns[Mes]">
+                      lineageId="Package\TransformarTiempo\Derived Column.Outputs[Derived Column Output].Columns[Mes]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -7386,10 +7793,10 @@
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\TransformarTiempo\SortTbTiempoSt.Inputs[Sort Input].Columns[Dia]"
+                      refId="Package\TransformarTiempo\SortTB_Fecha.Inputs[Sort Input].Columns[Dia]"
                       cachedDataType="i4"
                       cachedName="Dia"
-                      lineageId="Package\TransformarTiempo\columnasDIMtiempo.Outputs[Derived Column Output].Columns[Dia]">
+                      lineageId="Package\TransformarTiempo\Derived Column.Outputs[Derived Column Output].Columns[Dia]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -7407,14 +7814,14 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\TransformarTiempo\SortTbTiempoSt.Outputs[Sort Output]"
+                  refId="Package\TransformarTiempo\SortTB_Fecha.Outputs[Sort Output]"
                   isSorted="true"
                   name="Sort Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\TransformarTiempo\SortTbTiempoSt.Outputs[Sort Output].Columns[ID_fecha]"
+                      refId="Package\TransformarTiempo\SortTB_Fecha.Outputs[Sort Output].Columns[ID_fecha]"
                       dataType="i4"
-                      lineageId="Package\TransformarTiempo\SortTbTiempoSt.Outputs[Sort Output].Columns[ID_fecha]"
+                      lineageId="Package\TransformarTiempo\SortTB_Fecha.Outputs[Sort Output].Columns[ID_fecha]"
                       name="ID_fecha"
                       sortKeyPosition="1">
                       <properties>
@@ -7426,9 +7833,9 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\TransformarTiempo\SortTbTiempoSt.Outputs[Sort Output].Columns[fecha_entrega]"
+                      refId="Package\TransformarTiempo\SortTB_Fecha.Outputs[Sort Output].Columns[fecha_entrega]"
                       dataType="dbDate"
-                      lineageId="Package\TransformarTiempo\SortTbTiempoSt.Outputs[Sort Output].Columns[fecha_entrega]"
+                      lineageId="Package\TransformarTiempo\SortTB_Fecha.Outputs[Sort Output].Columns[fecha_entrega]"
                       name="fecha_entrega">
                       <properties>
                         <property
@@ -7439,42 +7846,42 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\TransformarTiempo\SortTbTiempoSt.Outputs[Sort Output].Columns[Anio]"
+                      refId="Package\TransformarTiempo\SortTB_Fecha.Outputs[Sort Output].Columns[Anio]"
                       dataType="i4"
-                      lineageId="Package\TransformarTiempo\SortTbTiempoSt.Outputs[Sort Output].Columns[Anio]"
+                      lineageId="Package\TransformarTiempo\SortTB_Fecha.Outputs[Sort Output].Columns[Anio]"
                       name="Anio">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\TransformarTiempo\columnasDIMtiempo.Outputs[Derived Column Output].Columns[Anio]}</property>
+                          name="SortColumnId">#{Package\TransformarTiempo\Derived Column.Outputs[Derived Column Output].Columns[Anio]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\TransformarTiempo\SortTbTiempoSt.Outputs[Sort Output].Columns[Mes]"
+                      refId="Package\TransformarTiempo\SortTB_Fecha.Outputs[Sort Output].Columns[Mes]"
                       dataType="i4"
-                      lineageId="Package\TransformarTiempo\SortTbTiempoSt.Outputs[Sort Output].Columns[Mes]"
+                      lineageId="Package\TransformarTiempo\SortTB_Fecha.Outputs[Sort Output].Columns[Mes]"
                       name="Mes">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\TransformarTiempo\columnasDIMtiempo.Outputs[Derived Column Output].Columns[Mes]}</property>
+                          name="SortColumnId">#{Package\TransformarTiempo\Derived Column.Outputs[Derived Column Output].Columns[Mes]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\TransformarTiempo\SortTbTiempoSt.Outputs[Sort Output].Columns[Dia]"
+                      refId="Package\TransformarTiempo\SortTB_Fecha.Outputs[Sort Output].Columns[Dia]"
                       dataType="i4"
-                      lineageId="Package\TransformarTiempo\SortTbTiempoSt.Outputs[Sort Output].Columns[Dia]"
+                      lineageId="Package\TransformarTiempo\SortTB_Fecha.Outputs[Sort Output].Columns[Dia]"
                       name="Dia">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\TransformarTiempo\columnasDIMtiempo.Outputs[Derived Column Output].Columns[Dia]}</property>
+                          name="SortColumnId">#{Package\TransformarTiempo\Derived Column.Outputs[Derived Column Output].Columns[Dia]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -7486,9 +7893,9 @@
           <paths>
             <path
               refId="Package\TransformarTiempo.Paths[Derived Column Output]"
-              endId="Package\TransformarTiempo\SortTbTiempoSt.Inputs[Sort Input]"
+              endId="Package\TransformarTiempo\SortTB_Fecha.Inputs[Sort Input]"
               name="Derived Column Output"
-              startId="Package\TransformarTiempo\columnasDIMtiempo.Outputs[Derived Column Output]" />
+              startId="Package\TransformarTiempo\Derived Column.Outputs[Derived Column Output]" />
             <path
               refId="Package\TransformarTiempo.Paths[Merge Join Output]"
               endId="Package\TransformarTiempo\Conditional Split.Inputs[Conditional Split Input]"
@@ -7501,7 +7908,7 @@
               startId="Package\TransformarTiempo\Conditional Split.Outputs[NuevosRegistros]" />
             <path
               refId="Package\TransformarTiempo.Paths[Salida de origen de ADO NET]"
-              endId="Package\TransformarTiempo\columnasDIMtiempo.Inputs[Derived Column Input]"
+              endId="Package\TransformarTiempo\Derived Column.Inputs[Derived Column Input]"
               name="Salida de origen de ADO NET"
               startId="Package\TransformarTiempo\OrigenTB_fecha.Outputs[Salida de origen de ADO NET]" />
             <path
@@ -7513,7 +7920,7 @@
               refId="Package\TransformarTiempo.Paths[Sort Output]"
               endId="Package\TransformarTiempo\Merge Join.Inputs[Merge Join Left Input]"
               name="Sort Output"
-              startId="Package\TransformarTiempo\SortTbTiempoSt.Outputs[Sort Output]" />
+              startId="Package\TransformarTiempo\SortTB_Fecha.Outputs[Sort Output]" />
             <path
               refId="Package\TransformarTiempo.Paths[Sort Output1]"
               endId="Package\TransformarTiempo\Merge Join.Inputs[Merge Join Right Input]"
@@ -7565,6 +7972,14 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Restricción 4"
       DTS:To="Package\TransformacionEmpleado" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{E91F9D0F-FFA5-4D37-9E86-044A07B10603}"
+      DTS:From="Package\TransformacionEmpleado"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 5"
+      DTS:To="Package\TransformacionProducto" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
@@ -7611,21 +8026,21 @@
         <NodeLayout
           Size="176,42"
           Id="Package\TransformarTiempo"
-          TopLeft="275,118" />
+          TopLeft="56,195" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 1]"
-          TopLeft="230,142">
+          TopLeft="142.25,166">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="45,0"
+              EndConnector="0,29"
               Start="0,0"
-              End="37.5,0">
+              End="0,21.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="37.5,0" />
+                    End="0,21.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -7640,18 +8055,18 @@
           TopLeft="274,191" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 2]"
-          TopLeft="363.25,160">
+          TopLeft="232,214">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,31"
+              EndConnector="42,0"
               Start="0,0"
-              End="0,23.5">
+              End="34.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,23.5" />
+                    End="34.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -7689,33 +8104,59 @@
         <NodeLayout
           Size="205,42"
           Id="Package\TransformacionEmpleado"
-          TopLeft="297,337" />
+          TopLeft="467,266" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 4]"
-          TopLeft="356.5,303">
+          TopLeft="443,284.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="43,34"
+              EndConnector="24,0"
               Start="0,0"
-              End="43,26.5">
+              End="16.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,13"
-                    Point2="0,17"
-                    Point3="4,17" />
+                    End="16.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="199,42"
+          Id="Package\TransformacionProducto"
+          TopLeft="482,341" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 5]"
+          TopLeft="569.5,308">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="12,33"
+              Start="0,0"
+              End="12,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="39,17" />
+                    End="0,12.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="39,17"
-                    Point2="43,17"
-                    Point3="43,21" />
+                    Point1="0,12.5"
+                    Point2="0,16.5"
+                    Point3="4,16.5" />
                   <mssgle:LineSegment
-                    End="43,26.5" />
+                    End="8,16.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8,16.5"
+                    Point2="12,16.5"
+                    Point3="12,20.5" />
+                  <mssgle:LineSegment
+                    End="12,25.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8031,37 +8472,37 @@
         <NodeLayout
           Size="159,42"
           Id="Package\TransformarTiempo\OrigenTB_fecha"
-          TopLeft="83,44" />
+          TopLeft="158,56.5" />
         <NodeLayout
-          Size="179,42"
-          Id="Package\TransformarTiempo\columnasDIMtiempo"
-          TopLeft="88,124" />
+          Size="158,42"
+          Id="Package\TransformarTiempo\Derived Column"
+          TopLeft="231.25,147.5" />
         <EdgeLayout
           Id="Package\TransformarTiempo.Paths[Salida de origen de ADO NET]"
-          TopLeft="162.5,86">
+          TopLeft="237.5,98.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="15,38"
+              EndConnector="72.75,49"
               Start="0,0"
-              End="15,30.5">
+              End="72.75,41.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,15" />
+                    End="0,20.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,15"
-                    Point2="0,19"
-                    Point3="4,19" />
+                    Point1="0,20.5"
+                    Point2="0,24.5"
+                    Point3="4,24.5" />
                   <mssgle:LineSegment
-                    End="11,19" />
+                    End="68.75,24.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="11,19"
-                    Point2="15,19"
-                    Point3="15,23" />
+                    Point1="68.75,24.5"
+                    Point2="72.75,24.5"
+                    Point3="72.75,28.5" />
                   <mssgle:LineSegment
-                    End="15,30.5" />
+                    End="72.75,41.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8073,45 +8514,33 @@
         <NodeLayout
           Size="173,42"
           Id="Package\TransformarTiempo\DestinoDimTiempo"
-          TopLeft="272.666666666667,420.444444444444" />
+          TopLeft="395,475" />
         <NodeLayout
           Size="168,42"
           Id="Package\TransformarTiempo\OrigenDimTiempo"
-          TopLeft="356,37" />
+          TopLeft="520,50" />
         <NodeLayout
-          Size="159,42"
-          Id="Package\TransformarTiempo\SortTbTiempoSt"
-          TopLeft="125,199" />
+          Size="150,42"
+          Id="Package\TransformarTiempo\SortTB_Fecha"
+          TopLeft="245,242.5" />
         <NodeLayout
           Size="156,42"
           Id="Package\TransformarTiempo\SortDimTiempo"
-          TopLeft="380,134" />
+          TopLeft="522.5,160" />
         <EdgeLayout
           Id="Package\TransformarTiempo.Paths[Salida de origen de ADO NET1]"
-          TopLeft="440,79">
+          TopLeft="602.25,92">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="18,55"
+              EndConnector="0,68"
               Start="0,0"
-              End="18,47.5">
+              End="0,60.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,23.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,23.5"
-                    Point2="0,27.5"
-                    Point3="4,27.5" />
-                  <mssgle:LineSegment
-                    End="14,27.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="14,27.5"
-                    Point2="18,27.5"
-                    Point3="18,31.5" />
-                  <mssgle:LineSegment
-                    End="18,47.5" />
+                    End="0,60.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8122,30 +8551,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\TransformarTiempo.Paths[Derived Column Output]"
-          TopLeft="177.5,166">
+          TopLeft="310.25,189.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="27,33"
+              EndConnector="9.75,53"
               Start="0,0"
-              End="27,25.5">
+              End="9.75,45.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,12.5" />
+                    End="0,22.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,12.5"
-                    Point2="0,16.5"
-                    Point3="4,16.5" />
+                    Point1="0,22.5"
+                    Point2="0,26.5"
+                    Point3="4,26.5" />
                   <mssgle:LineSegment
-                    End="23,16.5" />
+                    End="5.75,26.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="23,16.5"
-                    Point2="27,16.5"
-                    Point3="27,20.5" />
+                    Point1="5.75,26.5"
+                    Point2="9.75,26.5"
+                    Point3="9.75,30.5" />
                   <mssgle:LineSegment
-                    End="27,25.5" />
+                    End="9.75,45.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8157,33 +8586,33 @@
         <NodeLayout
           Size="133,42"
           Id="Package\TransformarTiempo\Merge Join"
-          TopLeft="297,279" />
+          TopLeft="410,330" />
         <EdgeLayout
           Id="Package\TransformarTiempo.Paths[Sort Output]"
-          TopLeft="204.5,241">
+          TopLeft="320,284.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="159,38"
+              EndConnector="156.5,45.5"
               Start="0,0"
-              End="159,30.5">
+              End="156.5,38">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,15" />
+                    End="0,18.75" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,15"
-                    Point2="0,19"
-                    Point3="4,19" />
+                    Point1="0,18.75"
+                    Point2="0,22.75"
+                    Point3="4,22.75" />
                   <mssgle:LineSegment
-                    End="155,19" />
+                    End="152.5,22.75" />
                   <mssgle:CubicBezierSegment
-                    Point1="155,19"
-                    Point2="159,19"
-                    Point3="159,23" />
+                    Point1="152.5,22.75"
+                    Point2="156.5,22.75"
+                    Point3="156.5,26.75" />
                   <mssgle:LineSegment
-                    End="159,30.5" />
+                    End="156.5,38" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8194,30 +8623,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\TransformarTiempo.Paths[Sort Output1]"
-          TopLeft="458,176">
+          TopLeft="600.5,202">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-73.6666666666667,103"
+              EndConnector="-103.166666666667,128"
               Start="0,0"
-              End="-73.6666666666667,95.5">
+              End="-103.166666666667,120.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,57.0653789004458" />
+                    End="0,71.8870728083209" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,57.0653789004458"
-                    Point2="0,61.0653789004458"
-                    Point3="-4,61.0653789004458" />
+                    Point1="0,71.8870728083209"
+                    Point2="0,75.8870728083209"
+                    Point3="-4,75.8870728083209" />
                   <mssgle:LineSegment
-                    End="-69.6666666666667,61.0653789004458" />
+                    End="-99.1666666666667,75.8870728083209" />
                   <mssgle:CubicBezierSegment
-                    Point1="-69.6666666666667,61.0653789004458"
-                    Point2="-73.6666666666667,61.0653789004458"
-                    Point3="-73.6666666666667,65.0653789004458" />
+                    Point1="-99.1666666666667,75.8870728083209"
+                    Point2="-103.166666666667,75.8870728083209"
+                    Point3="-103.166666666667,79.8870728083209" />
                   <mssgle:LineSegment
-                    End="-73.6666666666667,95.5" />
+                    End="-103.166666666667,120.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8229,21 +8658,33 @@
         <NodeLayout
           Size="159,42"
           Id="Package\TransformarTiempo\Conditional Split"
-          TopLeft="287.666666666667,346.888888888889" />
+          TopLeft="405,406.25" />
         <EdgeLayout
           Id="Package\TransformarTiempo.Paths[Merge Join Output]"
-          TopLeft="365.333333333333,321">
+          TopLeft="476.5,372">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,25.8888888888889"
+              EndConnector="8,34.25"
               Start="0,0"
-              End="0,18.3888888888889">
+              End="8,26.75">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,18.3888888888889" />
+                    End="0,13.125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.125"
+                    Point2="0,17.125"
+                    Point3="4,17.125" />
+                  <mssgle:LineSegment
+                    End="4,17.125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4,17.125"
+                    Point2="8,17.125"
+                    Point3="8,21.125" />
+                  <mssgle:LineSegment
+                    End="8,26.75" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8254,37 +8695,25 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\TransformarTiempo.Paths[NuevosRegistros]"
-          TopLeft="367.166666666667,388.888888888889">
+          TopLeft="483,448.25">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-8,31.5555555555555"
+              EndConnector="0,26.75"
               Start="0,0"
-              End="-8,24.0555555555555">
+              End="0,19.25">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,11.7777777777777" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,11.7777777777777"
-                    Point2="0,15.7777777777777"
-                    Point3="-4,15.7777777777777" />
-                  <mssgle:LineSegment
-                    End="-4,15.7777777777777" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-4,15.7777777777777"
-                    Point2="-8,15.7777777777777"
-                    Point3="-8,19.7777777777777" />
-                  <mssgle:LineSegment
-                    End="-8,24.0555555555555" />
+                    End="0,19.25" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-41.017578125,20.7777777777777,74.03515625,11.384765625"
+              BoundingBox="-37.017578125,3.9326171875,74.03515625,11.384765625"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -8293,22 +8722,6 @@
   </TaskHost>
   <PipelineComponentMetadata
     design-time-name="Package\TransformarTiempo\OrigenTB_fecha">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\TransformarTiempo\DestinoDimTiempo">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\TransformarTiempo\OrigenDimTiempo">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -9011,6 +9424,76 @@
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\TransformacionEmpleado\OrigenDimEmpleado">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\TransformacionProducto">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="175,42"
+          Id="Package\TransformacionProducto\OrigenTB_producto"
+          TopLeft="166,83" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\TransformacionProducto\DestinoDimProducto"
+          TopLeft="156,182" />
+        <EdgeLayout
+          Id="Package\TransformacionProducto.Paths[Salida de origen de ADO NET]"
+          TopLeft="249.75,125">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57"
+              Start="0,0"
+              End="0,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\TransformacionProducto\OrigenTB_producto">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\TransformacionProducto\DestinoDimProducto">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\TransformarTiempo\DestinoDimTiempo">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\TransformarTiempo\OrigenDimTiempo">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
