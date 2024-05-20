@@ -11,8 +11,8 @@
   DTS:LocaleID="9226"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="63"
-  DTS:VersionGUID="{092A2D98-1933-4A07-B86B-B7088653E925}">
+  DTS:VersionBuild="69"
+  DTS:VersionGUID="{96EFB1C3-53B6-4AC0-B131-862787DCFBE2}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -232,6 +232,12 @@
                       externalMetadataColumnId="Package\ExtraccionJardineria\DestinoTB_pedido.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_cliente]"
                       lineageId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET].Columns[ID_cliente]" />
                     <inputColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_pedido.Inputs[Entrada de destino de ADO NET].Columns[fecha_entrega]"
+                      cachedDataType="dbDate"
+                      cachedName="fecha_entrega"
+                      externalMetadataColumnId="Package\ExtraccionJardineria\DestinoTB_pedido.Inputs[Entrada de destino de ADO NET].ExternalColumns[fecha_entrega]"
+                      lineageId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET].Columns[fecha_entrega]" />
+                    <inputColumn
                       refId="Package\ExtraccionJardineria\DestinoTB_pedido.Inputs[Entrada de destino de ADO NET].Columns[ID_pedido]"
                       cachedDataType="i4"
                       cachedName="ID_pedido"
@@ -257,6 +263,10 @@
                       refId="Package\ExtraccionJardineria\DestinoTB_pedido.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_cliente]"
                       dataType="i4"
                       name="ID_cliente" />
+                    <externalMetadataColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_pedido.Inputs[Entrada de destino de ADO NET].ExternalColumns[fecha_entrega]"
+                      dataType="dbTimeStamp"
+                      name="fecha_entrega" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -2139,7 +2149,7 @@
                   description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT ID_pedido, estado, ID_cliente from pedido</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT ID_pedido, estado, ID_cliente, fecha_entrega from pedido</property>
                 <property
                   dataType="System.Int32"
                   description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
@@ -2204,6 +2214,15 @@
                       lineageId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET].Columns[ID_cliente]"
                       name="ID_cliente"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET].Columns[fecha_entrega]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET].ExternalColumns[fecha_entrega]"
+                      lineageId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET].Columns[fecha_entrega]"
+                      name="fecha_entrega"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -2220,6 +2239,10 @@
                       refId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_cliente]"
                       dataType="i4"
                       name="ID_cliente" />
+                    <externalMetadataColumn
+                      refId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET].ExternalColumns[fecha_entrega]"
+                      dataType="dbDate"
+                      name="fecha_entrega" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -2243,6 +2266,11 @@
                       dataType="i4"
                       lineageId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de error de origen de ADO NET].Columns[ID_cliente]"
                       name="ID_cliente" />
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de error de origen de ADO NET].Columns[fecha_entrega]"
+                      dataType="dbDate"
+                      lineageId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de error de origen de ADO NET].Columns[fecha_entrega]"
+                      name="fecha_entrega" />
                     <outputColumn
                       refId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
                       dataType="i4"
@@ -6182,22 +6210,22 @@
                   name="Conditional Split Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\TransformaciónFact\Conditional Split.Inputs[Conditional Split Input].Columns[ID_detalle_pedidoFac]"
+                      refId="Package\TransformaciónFact\Conditional Split.Inputs[Conditional Split Input].Columns[ID_detalle_pedidoFact]"
                       cachedDataType="i4"
-                      cachedName="ID_detalle_pedidoFac"
-                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_detalle_pedidoFac]" />
+                      cachedName="ID_detalle_pedidoFact"
+                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_detalle_pedidoFact]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\TransformaciónFact\Conditional Split.Outputs[NuevosRegistro]"
+                  refId="Package\TransformaciónFact\Conditional Split.Outputs[NuevosRegistros]"
                   description="Output 1 of the Conditional Split Transformation"
                   errorOrTruncationOperation="Computation"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
-                  name="NuevosRegistro"
+                  name="NuevosRegistros"
                   synchronousInputId="Package\TransformaciónFact\Conditional Split.Inputs[Conditional Split Input]"
                   truncationRowDisposition="FailComponent">
                   <properties>
@@ -6205,13 +6233,13 @@
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">[ISNULL](#{Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_detalle_pedidoFac]})</property>
+                      name="Expression">[ISNULL](#{Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_detalle_pedidoFact]})</property>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the friendly version of the expression. This expression version uses column names."
                       expressionType="Notify"
-                      name="FriendlyExpression">ISNULL(ID_detalle_pedidoFac)</property>
+                      name="FriendlyExpression">ISNULL(ID_detalle_pedidoFact)</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
@@ -6358,6 +6386,12 @@
                       cachedName="ID_cliente"
                       externalMetadataColumnId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_cliente]"
                       lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_cliente]" />
+                    <inputColumn
+                      refId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].Columns[ID_fecha]"
+                      cachedDataType="i4"
+                      cachedName="ID_fecha"
+                      externalMetadataColumnId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_fecha]"
+                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_fecha]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -6396,6 +6430,10 @@
                       refId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_cliente]"
                       dataType="i4"
                       name="ID_cliente" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_fecha]"
+                      dataType="i4"
+                      name="ID_fecha" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -6500,6 +6538,11 @@
                       cachedDataType="i4"
                       cachedName="ID_cliente"
                       lineageId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[ID_cliente]" />
+                    <inputColumn
+                      refId="Package\TransformaciónFact\Merge Join.Inputs[Merge Join Left Input].Columns[ID_fecha]"
+                      cachedDataType="i4"
+                      cachedName="ID_fecha"
+                      lineageId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[ID_fecha]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -6633,10 +6676,23 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_detalle_pedidoFac]"
+                      refId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_fecha]"
                       dataType="i4"
-                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_detalle_pedidoFac]"
-                      name="ID_detalle_pedidoFac">
+                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_fecha]"
+                      name="ID_fecha">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\TransformaciónFact\Merge Join.Inputs[Merge Join Left Input].Columns[ID_fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_detalle_pedidoFact]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_detalle_pedidoFact]"
+                      name="ID_detalle_pedidoFact">
                       <properties>
                         <property
                           containsID="true"
@@ -6651,11 +6707,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\TransformaciónFact\Origen de ADO NET"
+              refId="Package\TransformaciónFact\OrigenFactst"
               componentClassID="Microsoft.ManagedComponentHost"
               contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
               description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
-              name="Origen de ADO NET"
+              name="OrigenFactst"
               usesDispositions="true"
               version="4">
               <properties>
@@ -6690,7 +6746,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\TransformaciónFact\Origen de ADO NET.Connections[IDbConnection]"
+                  refId="Package\TransformaciónFact\OrigenFactst.Connections[IDbConnection]"
                   connectionManagerID="{94E0FBF7-229D-4A8F-A940-7724B216E618}:external"
                   connectionManagerRefId="Project.ConnectionManagers[JEARX.stagin]"
                   description="Administrador de conexiones administrado"
@@ -6698,182 +6754,200 @@
               </connections>
               <outputs>
                 <output
-                  refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET]"
+                  refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET]"
                   name="Salida de origen de ADO NET">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedido]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedido]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_detalle_pedido]"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedido]"
+                      externalMetadataColumnId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_detalle_pedido]"
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedido]"
                       name="ID_detalle_pedido"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedidoO]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedidoO]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_detalle_pedidoO]"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedidoO]"
+                      externalMetadataColumnId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_detalle_pedidoO]"
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedidoO]"
                       name="ID_detalle_pedidoO"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_pedido]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_pedido]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_pedido]"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_pedido]"
+                      externalMetadataColumnId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_pedido]"
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_pedido]"
                       name="ID_pedido"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_producto]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_producto]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_producto]"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_producto]"
+                      externalMetadataColumnId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_producto]"
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_producto]"
                       name="ID_producto"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[cantidad]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[cantidad]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[cantidad]"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[cantidad]"
+                      externalMetadataColumnId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].ExternalColumns[cantidad]"
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[cantidad]"
                       name="cantidad"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[precio_unidad]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[precio_unidad]"
                       dataType="numeric"
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[precio_unidad]"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[precio_unidad]"
+                      externalMetadataColumnId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].ExternalColumns[precio_unidad]"
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[precio_unidad]"
                       name="precio_unidad"
                       precision="15"
                       scale="2"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[estado]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[estado]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[estado]"
+                      externalMetadataColumnId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].ExternalColumns[estado]"
                       length="15"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[estado]"
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[estado]"
                       name="estado"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_cliente]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_cliente]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_cliente]"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_cliente]"
+                      externalMetadataColumnId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_cliente]"
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_cliente]"
                       name="ID_cliente"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_fecha]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_fecha]"
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_fecha]"
+                      name="ID_fecha"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_detalle_pedido]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_detalle_pedido]"
                       dataType="i4"
                       name="ID_detalle_pedido" />
                     <externalMetadataColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_detalle_pedidoO]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_detalle_pedidoO]"
                       dataType="i4"
                       name="ID_detalle_pedidoO" />
                     <externalMetadataColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_pedido]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_pedido]"
                       dataType="i4"
                       name="ID_pedido" />
                     <externalMetadataColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_producto]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_producto]"
                       dataType="i4"
                       name="ID_producto" />
                     <externalMetadataColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[cantidad]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].ExternalColumns[cantidad]"
                       dataType="i4"
                       name="cantidad" />
                     <externalMetadataColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[precio_unidad]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].ExternalColumns[precio_unidad]"
                       dataType="numeric"
                       name="precio_unidad"
                       precision="15"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[estado]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].ExternalColumns[estado]"
                       dataType="wstr"
                       length="15"
                       name="estado" />
                     <externalMetadataColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_cliente]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_cliente]"
                       dataType="i4"
                       name="ID_cliente" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_fecha]"
+                      dataType="i4"
+                      name="ID_fecha" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET]"
+                  refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de error de origen de ADO NET]"
                   isErrorOut="true"
                   name="Salida de error de origen de ADO NET">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_detalle_pedido]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de error de origen de ADO NET].Columns[ID_detalle_pedido]"
                       dataType="i4"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_detalle_pedido]"
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de error de origen de ADO NET].Columns[ID_detalle_pedido]"
                       name="ID_detalle_pedido" />
                     <outputColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_detalle_pedidoO]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de error de origen de ADO NET].Columns[ID_detalle_pedidoO]"
                       dataType="i4"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_detalle_pedidoO]"
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de error de origen de ADO NET].Columns[ID_detalle_pedidoO]"
                       name="ID_detalle_pedidoO" />
                     <outputColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_pedido]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de error de origen de ADO NET].Columns[ID_pedido]"
                       dataType="i4"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_pedido]"
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de error de origen de ADO NET].Columns[ID_pedido]"
                       name="ID_pedido" />
                     <outputColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_producto]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de error de origen de ADO NET].Columns[ID_producto]"
                       dataType="i4"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_producto]"
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de error de origen de ADO NET].Columns[ID_producto]"
                       name="ID_producto" />
                     <outputColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[cantidad]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de error de origen de ADO NET].Columns[cantidad]"
                       dataType="i4"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[cantidad]"
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de error de origen de ADO NET].Columns[cantidad]"
                       name="cantidad" />
                     <outputColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[precio_unidad]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de error de origen de ADO NET].Columns[precio_unidad]"
                       dataType="numeric"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[precio_unidad]"
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de error de origen de ADO NET].Columns[precio_unidad]"
                       name="precio_unidad"
                       precision="15"
                       scale="2" />
                     <outputColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[estado]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de error de origen de ADO NET].Columns[estado]"
                       dataType="wstr"
                       length="15"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[estado]"
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de error de origen de ADO NET].Columns[estado]"
                       name="estado" />
                     <outputColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_cliente]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de error de origen de ADO NET].Columns[ID_cliente]"
                       dataType="i4"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_cliente]"
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de error de origen de ADO NET].Columns[ID_cliente]"
                       name="ID_cliente" />
                     <outputColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de error de origen de ADO NET].Columns[ID_fecha]"
                       dataType="i4"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de error de origen de ADO NET].Columns[ID_fecha]"
+                      name="ID_fecha" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      refId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -6903,13 +6977,14 @@
     d.cantidad, 
     d.precio_unidad, 
     p.estado, 
-    p.ID_cliente
+    p.ID_cliente,
+    t.ID_fecha
 FROM 
     TB_detalle_pedido d
 JOIN 
-    TB_pedido p
-ON 
-    d.ID_pedido = p.ID_pedido;</property>
+    TB_pedido p ON d.ID_pedido = p.ID_pedido
+LEFT JOIN 
+    DimTiempo t ON p.fecha_entrega = t.fecha_entrega;</property>
                 <property
                   dataType="System.Int32"
                   description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
@@ -7021,6 +7096,15 @@ ON
                       lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_cliente]"
                       name="ID_cliente"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_fecha]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_fecha]"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_fecha]"
+                      name="ID_fecha"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -7059,6 +7143,10 @@ ON
                       refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_cliente]"
                       dataType="i4"
                       name="ID_cliente" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_fecha]"
+                      dataType="i4"
+                      name="ID_fecha" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -7110,6 +7198,11 @@ ON
                       lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[ID_cliente]"
                       name="ID_cliente" />
                     <outputColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[ID_fecha]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[ID_fecha]"
+                      name="ID_fecha" />
+                    <outputColumn
                       refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
                       dataType="i4"
                       lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
@@ -7153,7 +7246,7 @@ ON
                       refId="Package\TransformaciónFact\SortFactVentasst.Inputs[Sort Input].Columns[ID_detalle_pedido]"
                       cachedDataType="i4"
                       cachedName="ID_detalle_pedido"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedido]">
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedido]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -7169,7 +7262,7 @@ ON
                       refId="Package\TransformaciónFact\SortFactVentasst.Inputs[Sort Input].Columns[ID_detalle_pedidoO]"
                       cachedDataType="i4"
                       cachedName="ID_detalle_pedidoO"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedidoO]">
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedidoO]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -7185,7 +7278,7 @@ ON
                       refId="Package\TransformaciónFact\SortFactVentasst.Inputs[Sort Input].Columns[ID_pedido]"
                       cachedDataType="i4"
                       cachedName="ID_pedido"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_pedido]">
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_pedido]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -7201,7 +7294,7 @@ ON
                       refId="Package\TransformaciónFact\SortFactVentasst.Inputs[Sort Input].Columns[ID_producto]"
                       cachedDataType="i4"
                       cachedName="ID_producto"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_producto]">
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_producto]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -7217,7 +7310,7 @@ ON
                       refId="Package\TransformaciónFact\SortFactVentasst.Inputs[Sort Input].Columns[cantidad]"
                       cachedDataType="i4"
                       cachedName="cantidad"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[cantidad]">
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[cantidad]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -7235,7 +7328,7 @@ ON
                       cachedName="precio_unidad"
                       cachedPrecision="15"
                       cachedScale="2"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[precio_unidad]">
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[precio_unidad]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -7252,7 +7345,7 @@ ON
                       cachedDataType="wstr"
                       cachedLength="15"
                       cachedName="estado"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[estado]">
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[estado]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -7268,7 +7361,23 @@ ON
                       refId="Package\TransformaciónFact\SortFactVentasst.Inputs[Sort Input].Columns[ID_cliente]"
                       cachedDataType="i4"
                       cachedName="ID_cliente"
-                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_cliente]">
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_cliente]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformaciónFact\SortFactVentasst.Inputs[Sort Input].Columns[ID_fecha]"
+                      cachedDataType="i4"
+                      cachedName="ID_fecha"
+                      lineageId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_fecha]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -7301,7 +7410,7 @@ ON
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedido]}</property>
+                          name="SortColumnId">#{Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedido]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -7314,7 +7423,7 @@ ON
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedidoO]}</property>
+                          name="SortColumnId">#{Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedidoO]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -7327,7 +7436,7 @@ ON
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_pedido]}</property>
+                          name="SortColumnId">#{Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_pedido]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -7340,7 +7449,7 @@ ON
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_producto]}</property>
+                          name="SortColumnId">#{Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_producto]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -7353,7 +7462,7 @@ ON
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[cantidad]}</property>
+                          name="SortColumnId">#{Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[cantidad]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -7368,7 +7477,7 @@ ON
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[precio_unidad]}</property>
+                          name="SortColumnId">#{Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[precio_unidad]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -7382,7 +7491,7 @@ ON
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[estado]}</property>
+                          name="SortColumnId">#{Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[estado]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -7395,7 +7504,20 @@ ON
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_cliente]}</property>
+                          name="SortColumnId">#{Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_cliente]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\SortFactVentasst.Outputs[Sort Output].Columns[ID_fecha]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\SortFactVentasst.Outputs[Sort Output].Columns[ID_fecha]"
+                      name="ID_fecha">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET].Columns[ID_fecha]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -7557,6 +7679,22 @@ ON
                           name="NewSortKeyPosition">0</property>
                       </properties>
                     </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformaciónFact\SortVentas.Inputs[Sort Input].Columns[ID_fecha]"
+                      cachedDataType="i4"
+                      cachedName="ID_fecha"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_fecha]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -7675,6 +7813,19 @@ ON
                           name="SortColumnId">#{Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_cliente]}</property>
                       </properties>
                     </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[ID_fecha]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[ID_fecha]"
+                      name="ID_fecha">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_fecha]}</property>
+                      </properties>
+                    </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -7688,10 +7839,10 @@ ON
               name="Merge Join Output"
               startId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output]" />
             <path
-              refId="Package\TransformaciónFact.Paths[NuevosRegistro]"
+              refId="Package\TransformaciónFact.Paths[NuevosRegistros]"
               endId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET]"
-              name="NuevosRegistro"
-              startId="Package\TransformaciónFact\Conditional Split.Outputs[NuevosRegistro]" />
+              name="NuevosRegistros"
+              startId="Package\TransformaciónFact\Conditional Split.Outputs[NuevosRegistros]" />
             <path
               refId="Package\TransformaciónFact.Paths[Salida de origen de ADO NET]"
               endId="Package\TransformaciónFact\SortVentas.Inputs[Sort Input]"
@@ -7701,7 +7852,7 @@ ON
               refId="Package\TransformaciónFact.Paths[Salida de origen de ADO NET1]"
               endId="Package\TransformaciónFact\SortFactVentasst.Inputs[Sort Input]"
               name="Salida de origen de ADO NET"
-              startId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET]" />
+              startId="Package\TransformaciónFact\OrigenFactst.Outputs[Salida de origen de ADO NET]" />
             <path
               refId="Package\TransformaciónFact.Paths[Sort Output]"
               endId="Package\TransformaciónFact\Merge Join.Inputs[Merge Join Left Input]"
@@ -13896,45 +14047,41 @@ WHERE        [fecha_entrega] IS NULL;
         <NodeLayout
           Size="181,42"
           Id="Package\TransformaciónFact\DestinoFactVentasst"
-          TopLeft="295,380" />
+          TopLeft="304,385" />
         <NodeLayout
-          Size="179,42"
-          Id="Package\TransformaciónFact\Origen de ADO NET"
-          TopLeft="486,64" />
+          Size="142,42"
+          Id="Package\TransformaciónFact\OrigenFactst"
+          TopLeft="513,54" />
         <NodeLayout
           Size="133,42"
           Id="Package\TransformaciónFact\SortVentas"
-          TopLeft="164,137" />
-        <NodeLayout
-          Size="163,42"
-          Id="Package\TransformaciónFact\SortFactVentasst"
-          TopLeft="506,155" />
+          TopLeft="172,141" />
         <EdgeLayout
           Id="Package\TransformaciónFact.Paths[Salida de origen de ADO NET]"
           TopLeft="221,97">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="9.5,40"
+              EndConnector="17.5,44"
               Start="0,0"
-              End="9.5,32.5">
+              End="17.5,36.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16" />
+                    End="0,18" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,16"
-                    Point2="0,20"
-                    Point3="4,20" />
+                    Point1="0,18"
+                    Point2="0,22"
+                    Point3="4,22" />
                   <mssgle:LineSegment
-                    End="5.5,20" />
+                    End="13.5,22" />
                   <mssgle:CubicBezierSegment
-                    Point1="5.5,20"
-                    Point2="9.5,20"
-                    Point3="9.5,24" />
+                    Point1="13.5,22"
+                    Point2="17.5,22"
+                    Point3="17.5,26" />
                   <mssgle:LineSegment
-                    End="9.5,32.5" />
+                    End="17.5,36.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -13943,32 +14090,36 @@ WHERE        [fecha_entrega] IS NULL;
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="163,42"
+          Id="Package\TransformaciónFact\SortFactVentasst"
+          TopLeft="528,142" />
         <EdgeLayout
           Id="Package\TransformaciónFact.Paths[Salida de origen de ADO NET1]"
-          TopLeft="575.5,106">
+          TopLeft="584,96">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="12,49"
+              EndConnector="25.5,46"
               Start="0,0"
-              End="12,41.5">
+              End="25.5,38.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,20.5" />
+                    End="0,19" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,20.5"
-                    Point2="0,24.5"
-                    Point3="4,24.5" />
+                    Point1="0,19"
+                    Point2="0,23"
+                    Point3="4,23" />
                   <mssgle:LineSegment
-                    End="8,24.5" />
+                    End="21.5,23" />
                   <mssgle:CubicBezierSegment
-                    Point1="8,24.5"
-                    Point2="12,24.5"
-                    Point3="12,28.5" />
+                    Point1="21.5,23"
+                    Point2="25.5,23"
+                    Point3="25.5,27" />
                   <mssgle:LineSegment
-                    End="12,41.5" />
+                    End="25.5,38.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -13980,33 +14131,27 @@ WHERE        [fecha_entrega] IS NULL;
         <NodeLayout
           Size="133,42"
           Id="Package\TransformaciónFact\Merge Join"
-          TopLeft="318,222" />
+          TopLeft="325,204" />
         <EdgeLayout
           Id="Package\TransformaciónFact.Paths[Sort Output]"
-          TopLeft="230.5,179">
+          TopLeft="305,162">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="133.166666666667,43"
+              EndConnector="86.5,42"
               Start="0,0"
-              End="133.166666666667,35.5">
+              End="86.5,34.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21.4933135215453" />
+                    End="82.5,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,21.4933135215453"
-                    Point2="0,25.4933135215453"
-                    Point3="4,25.4933135215453" />
+                    Point1="82.5,0"
+                    Point2="86.5,0"
+                    Point3="86.5,4" />
                   <mssgle:LineSegment
-                    End="129.166666666667,25.4933135215453" />
-                  <mssgle:CubicBezierSegment
-                    Point1="129.166666666667,25.4933135215453"
-                    Point2="133.166666666667,25.4933135215453"
-                    Point3="133.166666666667,29.4933135215453" />
-                  <mssgle:LineSegment
-                    End="133.166666666667,35.5" />
+                    End="86.5,34.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -14017,30 +14162,30 @@ WHERE        [fecha_entrega] IS NULL;
         </EdgeLayout>
         <EdgeLayout
           Id="Package\TransformaciónFact.Paths[Sort Output1]"
-          TopLeft="587.5,197">
+          TopLeft="528,163">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-182.166666666667,25"
+              EndConnector="-70,62"
               Start="0,0"
-              End="-182.166666666667,17.5">
+              End="-62.5,62">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,10.8216939078752" />
+                    End="-31,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,10.8216939078752"
-                    Point2="0,14.8216939078752"
-                    Point3="-4,14.8216939078752" />
+                    Point1="-31,0"
+                    Point2="-35,0"
+                    Point3="-35,4" />
                   <mssgle:LineSegment
-                    End="-178.166666666667,14.8216939078752" />
+                    End="-35,58" />
                   <mssgle:CubicBezierSegment
-                    Point1="-178.166666666667,14.8216939078752"
-                    Point2="-182.166666666667,14.8216939078752"
-                    Point3="-182.166666666667,18.8216939078752" />
+                    Point1="-35,58"
+                    Point2="-35,62"
+                    Point3="-39,62" />
                   <mssgle:LineSegment
-                    End="-182.166666666667,17.5" />
+                    End="-62.5,62" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -14052,33 +14197,21 @@ WHERE        [fecha_entrega] IS NULL;
         <NodeLayout
           Size="159,42"
           Id="Package\TransformaciónFact\Conditional Split"
-          TopLeft="314,302" />
+          TopLeft="309,285" />
         <EdgeLayout
           Id="Package\TransformaciónFact.Paths[Merge Join Output]"
-          TopLeft="384.5,264">
+          TopLeft="390,246">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="9,38"
+              EndConnector="0,39"
               Start="0,0"
-              End="9,30.5">
+              End="0,31.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,15" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,15"
-                    Point2="0,19"
-                    Point3="4,19" />
-                  <mssgle:LineSegment
-                    End="5,19" />
-                  <mssgle:CubicBezierSegment
-                    Point1="5,19"
-                    Point2="9,19"
-                    Point3="9,23" />
-                  <mssgle:LineSegment
-                    End="9,30.5" />
+                    End="0,31.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -14088,38 +14221,26 @@ WHERE        [fecha_entrega] IS NULL;
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\TransformaciónFact.Paths[NuevosRegistro]"
-          TopLeft="393.5,344">
+          Id="Package\TransformaciónFact.Paths[NuevosRegistros]"
+          TopLeft="391.5,327">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-8,36"
+              EndConnector="0,58"
               Start="0,0"
-              End="-8,28.5">
+              End="0,50.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,14" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,14"
-                    Point2="0,18"
-                    Point3="-4,18" />
-                  <mssgle:LineSegment
-                    End="-4,18" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-4,18"
-                    Point2="-8,18"
-                    Point3="-8,22" />
-                  <mssgle:LineSegment
-                    End="-8,28.5" />
+                    End="0,50.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-38.74203125,23,69.4840625,11.384765625"
+              BoundingBox="-37.017578125,19.5576171875,74.03515625,11.384765625"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -14143,7 +14264,7 @@ WHERE        [fecha_entrega] IS NULL;
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\TransformaciónFact\Origen de ADO NET">
+    design-time-name="Package\TransformaciónFact\OrigenFactst">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
