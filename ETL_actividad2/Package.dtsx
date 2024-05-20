@@ -11,8 +11,8 @@
   DTS:LocaleID="9226"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="49"
-  DTS:VersionGUID="{47913870-5E07-4DB4-BD80-AC1327515474}">
+  DTS:VersionBuild="63"
+  DTS:VersionGUID="{092A2D98-1933-4A07-B86B-B7088653E925}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -31,6 +31,260 @@
         <pipeline
           version="1">
           <components>
+            <component
+              refId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="DestinoTB_detalle_pedido"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"TB_detalle_pedido"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Connections[IDbConnection]"
+                  connectionManagerID="{94E0FBF7-229D-4A8F-A940-7724B216E618}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[JEARX.stagin]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Inputs[Entrada de destino de ADO NET].Columns[ID_pedido]"
+                      cachedDataType="i4"
+                      cachedName="ID_pedido"
+                      externalMetadataColumnId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_pedido]"
+                      lineageId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].Columns[ID_pedido]" />
+                    <inputColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Inputs[Entrada de destino de ADO NET].Columns[ID_producto]"
+                      cachedDataType="i4"
+                      cachedName="ID_producto"
+                      externalMetadataColumnId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_producto]"
+                      lineageId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].Columns[ID_producto]" />
+                    <inputColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Inputs[Entrada de destino de ADO NET].Columns[cantidad]"
+                      cachedDataType="i4"
+                      cachedName="cantidad"
+                      externalMetadataColumnId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Inputs[Entrada de destino de ADO NET].ExternalColumns[cantidad]"
+                      lineageId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].Columns[cantidad]" />
+                    <inputColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Inputs[Entrada de destino de ADO NET].Columns[precio_unidad]"
+                      cachedDataType="numeric"
+                      cachedName="precio_unidad"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Inputs[Entrada de destino de ADO NET].ExternalColumns[precio_unidad]"
+                      lineageId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].Columns[precio_unidad]" />
+                    <inputColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Inputs[Entrada de destino de ADO NET].Columns[ID_detalle_pedido]"
+                      cachedDataType="i4"
+                      cachedName="ID_detalle_pedido"
+                      externalMetadataColumnId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_detalle_pedidoO]"
+                      lineageId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedido]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_detalle_pedido]"
+                      dataType="i4"
+                      name="ID_detalle_pedido" />
+                    <externalMetadataColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_detalle_pedidoO]"
+                      dataType="i4"
+                      name="ID_detalle_pedidoO" />
+                    <externalMetadataColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_pedido]"
+                      dataType="i4"
+                      name="ID_pedido" />
+                    <externalMetadataColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_producto]"
+                      dataType="i4"
+                      name="ID_producto" />
+                    <externalMetadataColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Inputs[Entrada de destino de ADO NET].ExternalColumns[cantidad]"
+                      dataType="i4"
+                      name="cantidad" />
+                    <externalMetadataColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Inputs[Entrada de destino de ADO NET].ExternalColumns[precio_unidad]"
+                      dataType="numeric"
+                      name="precio_unidad"
+                      precision="15"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ExtraccionJardineria\DestinoTB_pedido"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="DestinoTB_pedido"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"TB_pedido"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ExtraccionJardineria\DestinoTB_pedido.Connections[IDbConnection]"
+                  connectionManagerID="{94E0FBF7-229D-4A8F-A940-7724B216E618}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[JEARX.stagin]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ExtraccionJardineria\DestinoTB_pedido.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_pedido.Inputs[Entrada de destino de ADO NET].Columns[estado]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="estado"
+                      externalMetadataColumnId="Package\ExtraccionJardineria\DestinoTB_pedido.Inputs[Entrada de destino de ADO NET].ExternalColumns[estado]"
+                      lineageId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET].Columns[estado]" />
+                    <inputColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_pedido.Inputs[Entrada de destino de ADO NET].Columns[ID_cliente]"
+                      cachedDataType="i4"
+                      cachedName="ID_cliente"
+                      externalMetadataColumnId="Package\ExtraccionJardineria\DestinoTB_pedido.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_cliente]"
+                      lineageId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET].Columns[ID_cliente]" />
+                    <inputColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_pedido.Inputs[Entrada de destino de ADO NET].Columns[ID_pedido]"
+                      cachedDataType="i4"
+                      cachedName="ID_pedido"
+                      externalMetadataColumnId="Package\ExtraccionJardineria\DestinoTB_pedido.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_pedidoO]"
+                      lineageId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET].Columns[ID_pedido]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_pedido.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_pedido]"
+                      dataType="i4"
+                      name="ID_pedido" />
+                    <externalMetadataColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_pedido.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_pedidoO]"
+                      dataType="i4"
+                      name="ID_pedidoO" />
+                    <externalMetadataColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_pedido.Inputs[Entrada de destino de ADO NET].ExternalColumns[estado]"
+                      dataType="wstr"
+                      length="15"
+                      name="estado" />
+                    <externalMetadataColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_pedido.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_cliente]"
+                      dataType="i4"
+                      name="ID_cliente" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ExtraccionJardineria\DestinoTB_pedido.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\ExtraccionJardineria\DestinoTB_pedido.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_pedido.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ExtraccionJardineria\DestinoTB_pedido.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\DestinoTB_pedido.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ExtraccionJardineria\DestinoTB_pedido.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
             <component
               refId="Package\ExtraccionJardineria\Destino_TB_categoria_producto"
               componentClassID="Microsoft.ManagedComponentHost"
@@ -1195,6 +1449,185 @@
               </outputs>
             </component>
             <component
+              refId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="OrigenDetalle_pedidoJardinera"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [ID_detalle_pedido]
+      ,[ID_pedido]
+      ,[ID_producto]
+      ,[cantidad]
+      ,[precio_unidad]
+  FROM [jardineria].[dbo].[detalle_pedido]</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Connections[IDbConnection]"
+                  connectionManagerID="{2B0981C1-6C34-43C4-8C1F-F13C5EE37599}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Origen-jardineria]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedido]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_detalle_pedido]"
+                      lineageId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedido]"
+                      name="ID_detalle_pedido"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].Columns[ID_pedido]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_pedido]"
+                      lineageId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].Columns[ID_pedido]"
+                      name="ID_pedido"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].Columns[ID_producto]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_producto]"
+                      lineageId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].Columns[ID_producto]"
+                      name="ID_producto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].Columns[cantidad]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].ExternalColumns[cantidad]"
+                      lineageId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].Columns[cantidad]"
+                      name="cantidad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].Columns[precio_unidad]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].ExternalColumns[precio_unidad]"
+                      lineageId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].Columns[precio_unidad]"
+                      name="precio_unidad"
+                      precision="15"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_detalle_pedido]"
+                      dataType="i4"
+                      name="ID_detalle_pedido" />
+                    <externalMetadataColumn
+                      refId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_pedido]"
+                      dataType="i4"
+                      name="ID_pedido" />
+                    <externalMetadataColumn
+                      refId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_producto]"
+                      dataType="i4"
+                      name="ID_producto" />
+                    <externalMetadataColumn
+                      refId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].ExternalColumns[cantidad]"
+                      dataType="i4"
+                      name="cantidad" />
+                    <externalMetadataColumn
+                      refId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET].ExternalColumns[precio_unidad]"
+                      dataType="numeric"
+                      name="precio_unidad"
+                      precision="15"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de error de origen de ADO NET].Columns[ID_detalle_pedido]"
+                      dataType="i4"
+                      lineageId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de error de origen de ADO NET].Columns[ID_detalle_pedido]"
+                      name="ID_detalle_pedido" />
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de error de origen de ADO NET].Columns[ID_pedido]"
+                      dataType="i4"
+                      lineageId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de error de origen de ADO NET].Columns[ID_pedido]"
+                      name="ID_pedido" />
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de error de origen de ADO NET].Columns[ID_producto]"
+                      dataType="i4"
+                      lineageId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de error de origen de ADO NET].Columns[ID_producto]"
+                      name="ID_producto" />
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de error de origen de ADO NET].Columns[cantidad]"
+                      dataType="i4"
+                      lineageId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de error de origen de ADO NET].Columns[cantidad]"
+                      name="cantidad" />
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de error de origen de ADO NET].Columns[precio_unidad]"
+                      dataType="numeric"
+                      lineageId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de error de origen de ADO NET].Columns[precio_unidad]"
+                      name="precio_unidad"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\ExtraccionJardineria\OrigenEmpleadoJardineria"
               componentClassID="Microsoft.ManagedComponentHost"
               contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
@@ -1693,6 +2126,141 @@
               </outputs>
             </component>
             <component
+              refId="Package\ExtraccionJardineria\OrigenPedidoJardineria"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="OrigenPedidoJardineria"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT ID_pedido, estado, ID_cliente from pedido</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Connections[IDbConnection]"
+                  connectionManagerID="{2B0981C1-6C34-43C4-8C1F-F13C5EE37599}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Origen-jardineria]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET].Columns[ID_pedido]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_pedido]"
+                      lineageId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET].Columns[ID_pedido]"
+                      name="ID_pedido"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET].Columns[estado]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET].ExternalColumns[estado]"
+                      length="15"
+                      lineageId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET].Columns[estado]"
+                      name="estado"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET].Columns[ID_cliente]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_cliente]"
+                      lineageId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET].Columns[ID_cliente]"
+                      name="ID_cliente"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_pedido]"
+                      dataType="i4"
+                      name="ID_pedido" />
+                    <externalMetadataColumn
+                      refId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET].ExternalColumns[estado]"
+                      dataType="wstr"
+                      length="15"
+                      name="estado" />
+                    <externalMetadataColumn
+                      refId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_cliente]"
+                      dataType="i4"
+                      name="ID_cliente" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de error de origen de ADO NET].Columns[ID_pedido]"
+                      dataType="i4"
+                      lineageId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de error de origen de ADO NET].Columns[ID_pedido]"
+                      name="ID_pedido" />
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de error de origen de ADO NET].Columns[estado]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de error de origen de ADO NET].Columns[estado]"
+                      name="estado" />
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de error de origen de ADO NET].Columns[ID_cliente]"
+                      dataType="i4"
+                      lineageId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de error de origen de ADO NET].Columns[ID_cliente]"
+                      name="ID_cliente" />
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\ExtraccionJardineria\OrigenProductoJardineria"
               componentClassID="Microsoft.ManagedComponentHost"
               contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
@@ -1925,6 +2493,16 @@
               endId="Package\ExtraccionJardineria\Destino_TB_categoria_producto.Inputs[Entrada de destino de ADO NET]"
               name="Salida de origen de ADO NET"
               startId="Package\ExtraccionJardineria\OrigenCategoria_producto.Outputs[Salida de origen de ADO NET]" />
+            <path
+              refId="Package\ExtraccionJardineria.Paths[Salida de origen de ADO NET6]"
+              endId="Package\ExtraccionJardineria\DestinoTB_detalle_pedido.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de ADO NET"
+              startId="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera.Outputs[Salida de origen de ADO NET]" />
+            <path
+              refId="Package\ExtraccionJardineria.Paths[Salida de origen de ADO NET7]"
+              endId="Package\ExtraccionJardineria\DestinoTB_pedido.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de ADO NET"
+              startId="Package\ExtraccionJardineria\OrigenPedidoJardineria.Outputs[Salida de origen de ADO NET]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -1943,7 +2521,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{94E0FBF7-229D-4A8F-A940-7724B216E618}"
-          SQLTask:SqlStatementSource="TRUNCATE TABLE TB_cliente&#xA;TRUNCATE TABLE TB_empleado&#xA;TRUNCATE TABLE TB_fecha&#xA;TRUNCATE TABLE TB_oficina&#xA;TRUNCATE TABLE TB_producto&#xA;TRUNCATE TABLE TB_categoria_producto&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="TRUNCATE TABLE TB_cliente&#xA;TRUNCATE TABLE TB_empleado&#xA;TRUNCATE TABLE TB_fecha&#xA;TRUNCATE TABLE TB_oficina&#xA;TRUNCATE TABLE TB_producto&#xA;TRUNCATE TABLE TB_categoria_producto&#xA;TRUNCATE TABLE TB_detalle_pedido&#xA;TRUNCATE TABLE TB_pedido&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -5572,6 +6150,1568 @@
               endId="Package\TransformacionProducto\Merge Join 1.Inputs[Merge Join Right Input]"
               name="Sort Output"
               startId="Package\TransformacionProducto\SortDimProducto.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TransformaciónFact"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7C79D76A-5700-4C08-82A9-D7C9CD259A69}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TransformaciónFact"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\TransformaciónFact\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\TransformaciónFact\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\TransformaciónFact\Conditional Split.Inputs[Conditional Split Input].Columns[ID_detalle_pedidoFac]"
+                      cachedDataType="i4"
+                      cachedName="ID_detalle_pedidoFac"
+                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_detalle_pedidoFac]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\TransformaciónFact\Conditional Split.Outputs[NuevosRegistro]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="NuevosRegistro"
+                  synchronousInputId="Package\TransformaciónFact\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_detalle_pedidoFac]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(ID_detalle_pedidoFac)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\TransformaciónFact\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\TransformaciónFact\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\TransformaciónFact\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\TransformaciónFact\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\TransformaciónFact\DestinoFactVentasst"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="DestinoFactVentasst"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"FactVentasst"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\TransformaciónFact\DestinoFactVentasst.Connections[IDbConnection]"
+                  connectionManagerID="{94E0FBF7-229D-4A8F-A940-7724B216E618}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[JEARX.stagin]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].Columns[ID_detalle_pedido]"
+                      cachedDataType="i4"
+                      cachedName="ID_detalle_pedido"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_detalle_pedido]"
+                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_detalle_pedido]" />
+                    <inputColumn
+                      refId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].Columns[ID_detalle_pedidoO]"
+                      cachedDataType="i4"
+                      cachedName="ID_detalle_pedidoO"
+                      externalMetadataColumnId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_detalle_pedidoO]"
+                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_detalle_pedidoO]" />
+                    <inputColumn
+                      refId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].Columns[ID_pedido]"
+                      cachedDataType="i4"
+                      cachedName="ID_pedido"
+                      externalMetadataColumnId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_pedido]"
+                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_pedido]" />
+                    <inputColumn
+                      refId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].Columns[ID_producto]"
+                      cachedDataType="i4"
+                      cachedName="ID_producto"
+                      externalMetadataColumnId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_producto]"
+                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_producto]" />
+                    <inputColumn
+                      refId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].Columns[cantidad]"
+                      cachedDataType="i4"
+                      cachedName="cantidad"
+                      externalMetadataColumnId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].ExternalColumns[cantidad]"
+                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[cantidad]" />
+                    <inputColumn
+                      refId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].Columns[precio_unidad]"
+                      cachedDataType="numeric"
+                      cachedName="precio_unidad"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].ExternalColumns[precio_unidad]"
+                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[precio_unidad]" />
+                    <inputColumn
+                      refId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].Columns[estado]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="estado"
+                      externalMetadataColumnId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].ExternalColumns[estado]"
+                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[estado]" />
+                    <inputColumn
+                      refId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].Columns[ID_cliente]"
+                      cachedDataType="i4"
+                      cachedName="ID_cliente"
+                      externalMetadataColumnId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_cliente]"
+                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_cliente]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_detalle_pedido]"
+                      dataType="i4"
+                      name="ID_detalle_pedido" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_detalle_pedidoO]"
+                      dataType="i4"
+                      name="ID_detalle_pedidoO" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_pedido]"
+                      dataType="i4"
+                      name="ID_pedido" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_producto]"
+                      dataType="i4"
+                      name="ID_producto" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].ExternalColumns[cantidad]"
+                      dataType="i4"
+                      name="cantidad" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].ExternalColumns[precio_unidad]"
+                      dataType="numeric"
+                      name="precio_unidad"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].ExternalColumns[estado]"
+                      dataType="wstr"
+                      length="15"
+                      name="estado" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET].ExternalColumns[ID_cliente]"
+                      dataType="i4"
+                      name="ID_cliente" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\TransformaciónFact\DestinoFactVentasst.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\DestinoFactVentasst.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\DestinoFactVentasst.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\DestinoFactVentasst.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\DestinoFactVentasst.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\TransformaciónFact\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\TransformaciónFact\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\TransformaciónFact\Merge Join.Inputs[Merge Join Left Input].Columns[ID_detalle_pedido]"
+                      cachedDataType="i4"
+                      cachedName="ID_detalle_pedido"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[ID_detalle_pedido]" />
+                    <inputColumn
+                      refId="Package\TransformaciónFact\Merge Join.Inputs[Merge Join Left Input].Columns[ID_detalle_pedidoO]"
+                      cachedDataType="i4"
+                      cachedName="ID_detalle_pedidoO"
+                      lineageId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[ID_detalle_pedidoO]" />
+                    <inputColumn
+                      refId="Package\TransformaciónFact\Merge Join.Inputs[Merge Join Left Input].Columns[ID_pedido]"
+                      cachedDataType="i4"
+                      cachedName="ID_pedido"
+                      lineageId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[ID_pedido]" />
+                    <inputColumn
+                      refId="Package\TransformaciónFact\Merge Join.Inputs[Merge Join Left Input].Columns[ID_producto]"
+                      cachedDataType="i4"
+                      cachedName="ID_producto"
+                      lineageId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[ID_producto]" />
+                    <inputColumn
+                      refId="Package\TransformaciónFact\Merge Join.Inputs[Merge Join Left Input].Columns[cantidad]"
+                      cachedDataType="i4"
+                      cachedName="cantidad"
+                      lineageId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[cantidad]" />
+                    <inputColumn
+                      refId="Package\TransformaciónFact\Merge Join.Inputs[Merge Join Left Input].Columns[precio_unidad]"
+                      cachedDataType="numeric"
+                      cachedName="precio_unidad"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      lineageId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[precio_unidad]" />
+                    <inputColumn
+                      refId="Package\TransformaciónFact\Merge Join.Inputs[Merge Join Left Input].Columns[estado]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="estado"
+                      lineageId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[estado]" />
+                    <inputColumn
+                      refId="Package\TransformaciónFact\Merge Join.Inputs[Merge Join Left Input].Columns[ID_cliente]"
+                      cachedDataType="i4"
+                      cachedName="ID_cliente"
+                      lineageId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[ID_cliente]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\TransformaciónFact\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\TransformaciónFact\Merge Join.Inputs[Merge Join Right Input].Columns[ID_detalle_pedido]"
+                      cachedDataType="i4"
+                      cachedName="ID_detalle_pedido"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\TransformaciónFact\SortFactVentasst.Outputs[Sort Output].Columns[ID_detalle_pedido]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_detalle_pedido]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_detalle_pedido]"
+                      name="ID_detalle_pedido"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\TransformaciónFact\Merge Join.Inputs[Merge Join Left Input].Columns[ID_detalle_pedido]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_detalle_pedidoO]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_detalle_pedidoO]"
+                      name="ID_detalle_pedidoO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\TransformaciónFact\Merge Join.Inputs[Merge Join Left Input].Columns[ID_detalle_pedidoO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_pedido]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_pedido]"
+                      name="ID_pedido">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\TransformaciónFact\Merge Join.Inputs[Merge Join Left Input].Columns[ID_pedido]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_producto]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_producto]"
+                      name="ID_producto">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\TransformaciónFact\Merge Join.Inputs[Merge Join Left Input].Columns[ID_producto]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[cantidad]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[cantidad]"
+                      name="cantidad">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\TransformaciónFact\Merge Join.Inputs[Merge Join Left Input].Columns[cantidad]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[precio_unidad]"
+                      dataType="numeric"
+                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[precio_unidad]"
+                      name="precio_unidad"
+                      precision="15"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\TransformaciónFact\Merge Join.Inputs[Merge Join Left Input].Columns[precio_unidad]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[estado]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[estado]"
+                      name="estado">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\TransformaciónFact\Merge Join.Inputs[Merge Join Left Input].Columns[estado]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_cliente]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_cliente]"
+                      name="ID_cliente">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\TransformaciónFact\Merge Join.Inputs[Merge Join Left Input].Columns[ID_cliente]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_detalle_pedidoFac]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output].Columns[ID_detalle_pedidoFac]"
+                      name="ID_detalle_pedidoFac">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\TransformaciónFact\Merge Join.Inputs[Merge Join Right Input].Columns[ID_detalle_pedido]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\TransformaciónFact\Origen de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Origen de ADO NET"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."FactVentasst"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\TransformaciónFact\Origen de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{94E0FBF7-229D-4A8F-A940-7724B216E618}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[JEARX.stagin]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedido]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_detalle_pedido]"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedido]"
+                      name="ID_detalle_pedido"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedidoO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_detalle_pedidoO]"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedidoO]"
+                      name="ID_detalle_pedidoO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_pedido]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_pedido]"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_pedido]"
+                      name="ID_pedido"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_producto]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_producto]"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_producto]"
+                      name="ID_producto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[cantidad]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[cantidad]"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[cantidad]"
+                      name="cantidad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[precio_unidad]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[precio_unidad]"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[precio_unidad]"
+                      name="precio_unidad"
+                      precision="15"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[estado]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[estado]"
+                      length="15"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[estado]"
+                      name="estado"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_cliente]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_cliente]"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_cliente]"
+                      name="ID_cliente"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_detalle_pedido]"
+                      dataType="i4"
+                      name="ID_detalle_pedido" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_detalle_pedidoO]"
+                      dataType="i4"
+                      name="ID_detalle_pedidoO" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_pedido]"
+                      dataType="i4"
+                      name="ID_pedido" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_producto]"
+                      dataType="i4"
+                      name="ID_producto" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[cantidad]"
+                      dataType="i4"
+                      name="cantidad" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[precio_unidad]"
+                      dataType="numeric"
+                      name="precio_unidad"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[estado]"
+                      dataType="wstr"
+                      length="15"
+                      name="estado" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_cliente]"
+                      dataType="i4"
+                      name="ID_cliente" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_detalle_pedido]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_detalle_pedido]"
+                      name="ID_detalle_pedido" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_detalle_pedidoO]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_detalle_pedidoO]"
+                      name="ID_detalle_pedidoO" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_pedido]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_pedido]"
+                      name="ID_pedido" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_producto]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_producto]"
+                      name="ID_producto" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[cantidad]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[cantidad]"
+                      name="cantidad" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[precio_unidad]"
+                      dataType="numeric"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[precio_unidad]"
+                      name="precio_unidad"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[estado]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[estado]"
+                      name="estado" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_cliente]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_cliente]"
+                      name="ID_cliente" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\TransformaciónFact\OrigenVentas"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="OrigenVentas"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+    d.ID_detalle_pedido, 
+    d.ID_detalle_pedidoO, 
+    d.ID_pedido, 
+    d.ID_producto, 
+    d.cantidad, 
+    d.precio_unidad, 
+    p.estado, 
+    p.ID_cliente
+FROM 
+    TB_detalle_pedido d
+JOIN 
+    TB_pedido p
+ON 
+    d.ID_pedido = p.ID_pedido;</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\TransformaciónFact\OrigenVentas.Connections[IDbConnection]"
+                  connectionManagerID="{94E0FBF7-229D-4A8F-A940-7724B216E618}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[JEARX.stagin]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedido]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_detalle_pedido]"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedido]"
+                      name="ID_detalle_pedido"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedidoO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_detalle_pedidoO]"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedidoO]"
+                      name="ID_detalle_pedidoO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_pedido]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_pedido]"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_pedido]"
+                      name="ID_pedido"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_producto]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_producto]"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_producto]"
+                      name="ID_producto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[cantidad]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].ExternalColumns[cantidad]"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[cantidad]"
+                      name="cantidad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[precio_unidad]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].ExternalColumns[precio_unidad]"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[precio_unidad]"
+                      name="precio_unidad"
+                      precision="15"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[estado]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].ExternalColumns[estado]"
+                      length="15"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[estado]"
+                      name="estado"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_cliente]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_cliente]"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_cliente]"
+                      name="ID_cliente"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_detalle_pedido]"
+                      dataType="i4"
+                      name="ID_detalle_pedido" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_detalle_pedidoO]"
+                      dataType="i4"
+                      name="ID_detalle_pedidoO" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_pedido]"
+                      dataType="i4"
+                      name="ID_pedido" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_producto]"
+                      dataType="i4"
+                      name="ID_producto" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].ExternalColumns[cantidad]"
+                      dataType="i4"
+                      name="cantidad" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].ExternalColumns[precio_unidad]"
+                      dataType="numeric"
+                      name="precio_unidad"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].ExternalColumns[estado]"
+                      dataType="wstr"
+                      length="15"
+                      name="estado" />
+                    <externalMetadataColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_cliente]"
+                      dataType="i4"
+                      name="ID_cliente" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[ID_detalle_pedido]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[ID_detalle_pedido]"
+                      name="ID_detalle_pedido" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[ID_detalle_pedidoO]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[ID_detalle_pedidoO]"
+                      name="ID_detalle_pedidoO" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[ID_pedido]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[ID_pedido]"
+                      name="ID_pedido" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[ID_producto]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[ID_producto]"
+                      name="ID_producto" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[cantidad]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[cantidad]"
+                      name="cantidad" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[precio_unidad]"
+                      dataType="numeric"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[precio_unidad]"
+                      name="precio_unidad"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[estado]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[estado]"
+                      name="estado" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[ID_cliente]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[ID_cliente]"
+                      name="ID_cliente" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\TransformaciónFact\SortFactVentasst"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="SortFactVentasst"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\TransformaciónFact\SortFactVentasst.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\TransformaciónFact\SortFactVentasst.Inputs[Sort Input].Columns[ID_detalle_pedido]"
+                      cachedDataType="i4"
+                      cachedName="ID_detalle_pedido"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedido]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformaciónFact\SortFactVentasst.Inputs[Sort Input].Columns[ID_detalle_pedidoO]"
+                      cachedDataType="i4"
+                      cachedName="ID_detalle_pedidoO"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedidoO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformaciónFact\SortFactVentasst.Inputs[Sort Input].Columns[ID_pedido]"
+                      cachedDataType="i4"
+                      cachedName="ID_pedido"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_pedido]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformaciónFact\SortFactVentasst.Inputs[Sort Input].Columns[ID_producto]"
+                      cachedDataType="i4"
+                      cachedName="ID_producto"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_producto]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformaciónFact\SortFactVentasst.Inputs[Sort Input].Columns[cantidad]"
+                      cachedDataType="i4"
+                      cachedName="cantidad"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[cantidad]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformaciónFact\SortFactVentasst.Inputs[Sort Input].Columns[precio_unidad]"
+                      cachedDataType="numeric"
+                      cachedName="precio_unidad"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[precio_unidad]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformaciónFact\SortFactVentasst.Inputs[Sort Input].Columns[estado]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="estado"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[estado]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformaciónFact\SortFactVentasst.Inputs[Sort Input].Columns[ID_cliente]"
+                      cachedDataType="i4"
+                      cachedName="ID_cliente"
+                      lineageId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_cliente]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\TransformaciónFact\SortFactVentasst.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\SortFactVentasst.Outputs[Sort Output].Columns[ID_detalle_pedido]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\SortFactVentasst.Outputs[Sort Output].Columns[ID_detalle_pedido]"
+                      name="ID_detalle_pedido"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedido]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\SortFactVentasst.Outputs[Sort Output].Columns[ID_detalle_pedidoO]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\SortFactVentasst.Outputs[Sort Output].Columns[ID_detalle_pedidoO]"
+                      name="ID_detalle_pedidoO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedidoO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\SortFactVentasst.Outputs[Sort Output].Columns[ID_pedido]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\SortFactVentasst.Outputs[Sort Output].Columns[ID_pedido]"
+                      name="ID_pedido">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_pedido]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\SortFactVentasst.Outputs[Sort Output].Columns[ID_producto]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\SortFactVentasst.Outputs[Sort Output].Columns[ID_producto]"
+                      name="ID_producto">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_producto]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\SortFactVentasst.Outputs[Sort Output].Columns[cantidad]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\SortFactVentasst.Outputs[Sort Output].Columns[cantidad]"
+                      name="cantidad">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[cantidad]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\SortFactVentasst.Outputs[Sort Output].Columns[precio_unidad]"
+                      dataType="numeric"
+                      lineageId="Package\TransformaciónFact\SortFactVentasst.Outputs[Sort Output].Columns[precio_unidad]"
+                      name="precio_unidad"
+                      precision="15"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[precio_unidad]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\SortFactVentasst.Outputs[Sort Output].Columns[estado]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\TransformaciónFact\SortFactVentasst.Outputs[Sort Output].Columns[estado]"
+                      name="estado">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[estado]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\SortFactVentasst.Outputs[Sort Output].Columns[ID_cliente]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\SortFactVentasst.Outputs[Sort Output].Columns[ID_cliente]"
+                      name="ID_cliente">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_cliente]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\TransformaciónFact\SortVentas"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="SortVentas"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\TransformaciónFact\SortVentas.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\TransformaciónFact\SortVentas.Inputs[Sort Input].Columns[ID_detalle_pedido]"
+                      cachedDataType="i4"
+                      cachedName="ID_detalle_pedido"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedido]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformaciónFact\SortVentas.Inputs[Sort Input].Columns[ID_detalle_pedidoO]"
+                      cachedDataType="i4"
+                      cachedName="ID_detalle_pedidoO"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedidoO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformaciónFact\SortVentas.Inputs[Sort Input].Columns[ID_pedido]"
+                      cachedDataType="i4"
+                      cachedName="ID_pedido"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_pedido]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformaciónFact\SortVentas.Inputs[Sort Input].Columns[ID_producto]"
+                      cachedDataType="i4"
+                      cachedName="ID_producto"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_producto]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformaciónFact\SortVentas.Inputs[Sort Input].Columns[cantidad]"
+                      cachedDataType="i4"
+                      cachedName="cantidad"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[cantidad]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformaciónFact\SortVentas.Inputs[Sort Input].Columns[precio_unidad]"
+                      cachedDataType="numeric"
+                      cachedName="precio_unidad"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[precio_unidad]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformaciónFact\SortVentas.Inputs[Sort Input].Columns[estado]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="estado"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[estado]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TransformaciónFact\SortVentas.Inputs[Sort Input].Columns[ID_cliente]"
+                      cachedDataType="i4"
+                      cachedName="ID_cliente"
+                      lineageId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_cliente]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[ID_detalle_pedido]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[ID_detalle_pedido]"
+                      name="ID_detalle_pedido"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedido]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[ID_detalle_pedidoO]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[ID_detalle_pedidoO]"
+                      name="ID_detalle_pedidoO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_detalle_pedidoO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[ID_pedido]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[ID_pedido]"
+                      name="ID_pedido">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_pedido]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[ID_producto]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[ID_producto]"
+                      name="ID_producto">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_producto]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[cantidad]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[cantidad]"
+                      name="cantidad">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[cantidad]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[precio_unidad]"
+                      dataType="numeric"
+                      lineageId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[precio_unidad]"
+                      name="precio_unidad"
+                      precision="15"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[precio_unidad]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[estado]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[estado]"
+                      name="estado">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[estado]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[ID_cliente]"
+                      dataType="i4"
+                      lineageId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output].Columns[ID_cliente]"
+                      name="ID_cliente">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET].Columns[ID_cliente]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\TransformaciónFact.Paths[Merge Join Output]"
+              endId="Package\TransformaciónFact\Conditional Split.Inputs[Conditional Split Input]"
+              name="Merge Join Output"
+              startId="Package\TransformaciónFact\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\TransformaciónFact.Paths[NuevosRegistro]"
+              endId="Package\TransformaciónFact\DestinoFactVentasst.Inputs[Entrada de destino de ADO NET]"
+              name="NuevosRegistro"
+              startId="Package\TransformaciónFact\Conditional Split.Outputs[NuevosRegistro]" />
+            <path
+              refId="Package\TransformaciónFact.Paths[Salida de origen de ADO NET]"
+              endId="Package\TransformaciónFact\SortVentas.Inputs[Sort Input]"
+              name="Salida de origen de ADO NET"
+              startId="Package\TransformaciónFact\OrigenVentas.Outputs[Salida de origen de ADO NET]" />
+            <path
+              refId="Package\TransformaciónFact.Paths[Salida de origen de ADO NET1]"
+              endId="Package\TransformaciónFact\SortFactVentasst.Inputs[Sort Input]"
+              name="Salida de origen de ADO NET"
+              startId="Package\TransformaciónFact\Origen de ADO NET.Outputs[Salida de origen de ADO NET]" />
+            <path
+              refId="Package\TransformaciónFact.Paths[Sort Output]"
+              endId="Package\TransformaciónFact\Merge Join.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\TransformaciónFact\SortVentas.Outputs[Sort Output]" />
+            <path
+              refId="Package\TransformaciónFact.Paths[Sort Output1]"
+              endId="Package\TransformaciónFact\Merge Join.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\TransformaciónFact\SortFactVentasst.Outputs[Sort Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -9752,6 +11892,14 @@ WHERE        [fecha_entrega] IS NULL;
       DTS:LogicalAnd="True"
       DTS:ObjectName="Restricción 5"
       DTS:To="Package\TransformacionProducto" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{3630862B-69A9-47AE-878F-73F94978FEF9}"
+      DTS:From="Package\TransformacionProducto"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 6"
+      DTS:To="Package\TransformaciónFact" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
@@ -9937,6 +12085,44 @@ WHERE        [fecha_entrega] IS NULL;
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="177,42"
+          Id="Package\TransformaciónFact"
+          TopLeft="422,417" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 6]"
+          TopLeft="581.5,383">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-71,34"
+              Start="0,0"
+              End="-71,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13"
+                    Point2="0,17"
+                    Point3="-4,17" />
+                  <mssgle:LineSegment
+                    End="-67,17" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-67,17"
+                    Point2="-71,17"
+                    Point3="-71,21" />
+                  <mssgle:LineSegment
+                    End="-71,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -9945,26 +12131,6 @@ WHERE        [fecha_entrega] IS NULL;
     <LayoutInfo>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="169,42"
-          Id="Package\ExtraccionJardineria\Destino_TB_fecha"
-          TopLeft="540,90" />
-        <NodeLayout
-          Size="191,42"
-          Id="Package\ExtraccionJardineria\OrigenFechaJardineria"
-          TopLeft="535,19" />
-        <NodeLayout
-          Size="174,42"
-          Id="Package\ExtraccionJardineria\Destino_TB_oficina"
-          TopLeft="306,262" />
-        <NodeLayout
-          Size="195,42"
-          Id="Package\ExtraccionJardineria\OrigenClienteJardineria"
-          TopLeft="285,13" />
-        <NodeLayout
-          Size="191,42"
-          Id="Package\ExtraccionJardineria\Destino_TB_empleado"
-          TopLeft="56,264" />
         <NodeLayout
           Size="205,42"
           Id="Package\ExtraccionJardineria\OrigenProductoJardineria"
@@ -9978,57 +12144,41 @@ WHERE        [fecha_entrega] IS NULL;
           Id="Package\ExtraccionJardineria\Destino_TB_producto"
           TopLeft="23,101" />
         <NodeLayout
+          Size="169,42"
+          Id="Package\ExtraccionJardineria\Destino_TB_fecha"
+          TopLeft="540,90" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\ExtraccionJardineria\OrigenFechaJardineria"
+          TopLeft="535,19" />
+        <NodeLayout
           Size="174,42"
           Id="Package\ExtraccionJardineria\Destino_TB_cliente"
           TopLeft="293,101" />
         <NodeLayout
+          Size="209,42"
+          Id="Package\ExtraccionJardineria\OrigenCategoria_producto"
+          TopLeft="557,162" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\ExtraccionJardineria\Destino_TB_oficina"
+          TopLeft="306,262" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\ExtraccionJardineria\Destino_TB_empleado"
+          TopLeft="56,264" />
+        <NodeLayout
           Size="195,42"
           Id="Package\ExtraccionJardineria\OrigenOficinaJardineria"
           TopLeft="303,173" />
-        <EdgeLayout
-          Id="Package\ExtraccionJardineria.Paths[Salida de origen de ADO NET4]"
-          TopLeft="627.5,61">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,29"
-              Start="0,0"
-              End="0,21.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,21.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ExtraccionJardineria.Paths[Salida de origen de ADO NET3]"
-          TopLeft="396.75,215">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,47"
-              Start="0,0"
-              End="0,39.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,39.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <NodeLayout
+          Size="195,42"
+          Id="Package\ExtraccionJardineria\OrigenClienteJardineria"
+          TopLeft="285,13" />
+        <NodeLayout
+          Size="237,42"
+          Id="Package\ExtraccionJardineria\Destino_TB_categoria_producto"
+          TopLeft="519,246" />
         <EdgeLayout
           Id="Package\ExtraccionJardineria.Paths[Salida de origen de ADO NET2]"
           TopLeft="153.25,225">
@@ -10095,14 +12245,6 @@ WHERE        [fecha_entrega] IS NULL;
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="209,42"
-          Id="Package\ExtraccionJardineria\OrigenCategoria_producto"
-          TopLeft="557,162" />
-        <NodeLayout
-          Size="237,42"
-          Id="Package\ExtraccionJardineria\Destino_TB_categoria_producto"
-          TopLeft="519,246" />
         <EdgeLayout
           Id="Package\ExtraccionJardineria.Paths[Salida de origen de ADO NET5]"
           TopLeft="661.5,204">
@@ -10129,6 +12271,122 @@ WHERE        [fecha_entrega] IS NULL;
                     Point3="-24,25" />
                   <mssgle:LineSegment
                     End="-24,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ExtraccionJardineria.Paths[Salida de origen de ADO NET4]"
+          TopLeft="627.5,61">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29"
+              Start="0,0"
+              End="0,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ExtraccionJardineria.Paths[Salida de origen de ADO NET3]"
+          TopLeft="396.75,215">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47"
+              Start="0,0"
+              End="0,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="232,42"
+          Id="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera"
+          TopLeft="42,366" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\ExtraccionJardineria\DestinoTB_detalle_pedido"
+          TopLeft="307,363" />
+        <EdgeLayout
+          Id="Package\ExtraccionJardineria.Paths[Salida de origen de ADO NET6]"
+          TopLeft="274,385.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="33,0"
+              Start="0,0"
+              End="25.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="25.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="195,42"
+          Id="Package\ExtraccionJardineria\OrigenPedidoJardineria"
+          TopLeft="546,318" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\ExtraccionJardineria\DestinoTB_pedido"
+          TopLeft="548,404" />
+        <EdgeLayout
+          Id="Package\ExtraccionJardineria.Paths[Salida de origen de ADO NET7]"
+          TopLeft="643.5,360">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-10.5,44"
+              Start="0,0"
+              End="-10.5,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18"
+                    Point2="0,22"
+                    Point3="-4,22" />
+                  <mssgle:LineSegment
+                    End="-6.5,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-6.5,22"
+                    Point2="-10.5,22"
+                    Point3="-10.5,26" />
+                  <mssgle:LineSegment
+                    End="-10.5,36.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10242,25 +12500,67 @@ WHERE        [fecha_entrega] IS NULL;
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="181,42"
-          Id="Package\TransformacionEmpleado\OrigenTB_empleado"
-          TopLeft="109,59" />
-        <NodeLayout
           Size="186,42"
           Id="Package\TransformacionEmpleado\DestinoDimEmpleado"
           TopLeft="318,366" />
         <NodeLayout
           Size="181,42"
-          Id="Package\TransformacionEmpleado\OrigenDimEmpleado"
-          TopLeft="447,55" />
+          Id="Package\TransformacionEmpleado\OrigenTB_empleado"
+          TopLeft="109,59" />
         <NodeLayout
           Size="168,42"
           Id="Package\TransformacionEmpleado\SortTB_empleado"
           TopLeft="146,148" />
         <NodeLayout
+          Size="133,42"
+          Id="Package\TransformacionEmpleado\Merge Join"
+          TopLeft="329,230" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\TransformacionEmpleado\OrigenDimEmpleado"
+          TopLeft="447,55" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\TransformacionEmpleado\Conditional Split"
+          TopLeft="327,298" />
+        <NodeLayout
           Size="168,42"
           Id="Package\TransformacionEmpleado\SortDimEmpleado"
           TopLeft="488,144" />
+        <EdgeLayout
+          Id="Package\TransformacionEmpleado.Paths[Salida de origen de ADO NET1]"
+          TopLeft="537.5,97">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="34.5,47"
+              Start="0,0"
+              End="34.5,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.5"
+                    Point2="0,23.5"
+                    Point3="4,23.5" />
+                  <mssgle:LineSegment
+                    End="30.5,23.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="30.5,23.5"
+                    Point2="34.5,23.5"
+                    Point3="34.5,27.5" />
+                  <mssgle:LineSegment
+                    End="34.5,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\TransformacionEmpleado.Paths[Salida de origen de ADO NET]"
           TopLeft="199.5,101">
@@ -10296,69 +12596,55 @@ WHERE        [fecha_entrega] IS NULL;
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\TransformacionEmpleado.Paths[Salida de origen de ADO NET1]"
-          TopLeft="537.5,97">
+          Id="Package\TransformacionEmpleado.Paths[NuevosRegistros]"
+          TopLeft="408.75,340">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="34.5,47"
+              EndConnector="0,26"
               Start="0,0"
-              End="34.5,39.5">
+              End="0,18.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,19.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,19.5"
-                    Point2="0,23.5"
-                    Point3="4,23.5" />
-                  <mssgle:LineSegment
-                    End="30.5,23.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="30.5,23.5"
-                    Point2="34.5,23.5"
-                    Point3="34.5,27.5" />
-                  <mssgle:LineSegment
-                    End="34.5,39.5" />
+                    End="0,18.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-37.017578125,3.5576171875,74.03515625,11.384765625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="133,42"
-          Id="Package\TransformacionEmpleado\Merge Join"
-          TopLeft="329,230" />
         <EdgeLayout
-          Id="Package\TransformacionEmpleado.Paths[Sort Output]"
-          TopLeft="230,190">
+          Id="Package\TransformacionEmpleado.Paths[Merge Join Output]"
+          TopLeft="395.5,272">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="165.5,40"
+              EndConnector="11,26"
               Start="0,0"
-              End="165.5,32.5">
+              End="11,18.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16" />
+                    End="0,9" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,16"
-                    Point2="0,20"
-                    Point3="4,20" />
+                    Point1="0,9"
+                    Point2="0,13"
+                    Point3="4,13" />
                   <mssgle:LineSegment
-                    End="161.5,20" />
+                    End="7,13" />
                   <mssgle:CubicBezierSegment
-                    Point1="161.5,20"
-                    Point2="165.5,20"
-                    Point3="165.5,24" />
+                    Point1="7,13"
+                    Point2="11,13"
+                    Point3="11,17" />
                   <mssgle:LineSegment
-                    End="165.5,32.5" />
+                    End="11,18.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10401,66 +12687,38 @@ WHERE        [fecha_entrega] IS NULL;
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="159,42"
-          Id="Package\TransformacionEmpleado\Conditional Split"
-          TopLeft="327,298" />
         <EdgeLayout
-          Id="Package\TransformacionEmpleado.Paths[Merge Join Output]"
-          TopLeft="395.5,272">
+          Id="Package\TransformacionEmpleado.Paths[Sort Output]"
+          TopLeft="230,190">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="11,26"
+              EndConnector="165.5,40"
               Start="0,0"
-              End="11,18.5">
+              End="165.5,32.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,9" />
+                    End="0,16" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,9"
-                    Point2="0,13"
-                    Point3="4,13" />
+                    Point1="0,16"
+                    Point2="0,20"
+                    Point3="4,20" />
                   <mssgle:LineSegment
-                    End="7,13" />
+                    End="161.5,20" />
                   <mssgle:CubicBezierSegment
-                    Point1="7,13"
-                    Point2="11,13"
-                    Point3="11,17" />
+                    Point1="161.5,20"
+                    Point2="165.5,20"
+                    Point3="165.5,24" />
                   <mssgle:LineSegment
-                    End="11,18.5" />
+                    End="165.5,32.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\TransformacionEmpleado.Paths[NuevosRegistros]"
-          TopLeft="408.75,340">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,26"
-              Start="0,0"
-              End="0,18.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,18.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-37.017578125,3.5576171875,74.03515625,11.384765625"
-              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -10856,43 +13114,29 @@ WHERE        [fecha_entrega] IS NULL;
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="170,42"
+          Id="Package\TransformarClientes\DestinoDimCliente"
+          TopLeft="269,384" />
+        <NodeLayout
           Size="164,42"
           Id="Package\TransformarClientes\OrigenTB_cliente"
           TopLeft="115,60" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\TransformarClientes\SortTB_clienteSt"
+          TopLeft="117,151" />
+        <NodeLayout
+          Size="133,42"
+          Id="Package\TransformarClientes\Merge Join"
+          TopLeft="282,237" />
         <NodeLayout
           Size="166,42"
           Id="Package\TransformarClientes\OrigenDimCliente"
           TopLeft="400,45" />
         <NodeLayout
-          Size="170,42"
-          Id="Package\TransformarClientes\DestinoDimCliente"
-          TopLeft="269,384" />
-        <NodeLayout
-          Size="162,42"
-          Id="Package\TransformarClientes\SortTB_clienteSt"
-          TopLeft="117,151" />
-        <EdgeLayout
-          Id="Package\TransformarClientes.Paths[Salida de origen de ADO NET]"
-          TopLeft="197.5,102">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,49"
-              Start="0,0"
-              End="0,41.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,41.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="159,42"
+          Id="Package\TransformarClientes\Conditional Split"
+          TopLeft="275,304" />
         <NodeLayout
           Size="153,42"
           Id="Package\TransformarClientes\SortDimCliente"
@@ -10931,36 +13175,66 @@ WHERE        [fecha_entrega] IS NULL;
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="133,42"
-          Id="Package\TransformarClientes\Merge Join"
-          TopLeft="282,237" />
         <EdgeLayout
-          Id="Package\TransformarClientes.Paths[Sort Output]"
-          TopLeft="198,193">
+          Id="Package\TransformarClientes.Paths[Salida de origen de ADO NET]"
+          TopLeft="197.5,102">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="150.5,44"
+              EndConnector="0,49"
               Start="0,0"
-              End="150.5,36.5">
+              End="0,41.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,18" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,18"
-                    Point2="0,22"
-                    Point3="4,22" />
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\TransformarClientes.Paths[NuevosRegistros]"
+          TopLeft="354.25,346">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="146.5,22" />
-                  <mssgle:CubicBezierSegment
-                    Point1="146.5,22"
-                    Point2="150.5,22"
-                    Point3="150.5,26" />
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-37.017578125,9.5576171875,74.03515625,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\TransformarClientes.Paths[Merge Join Output]"
+          TopLeft="351.5,279">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,25"
+              Start="0,0"
+              End="0,17.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="150.5,36.5" />
+                    End="0,17.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -11003,54 +13277,38 @@ WHERE        [fecha_entrega] IS NULL;
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="159,42"
-          Id="Package\TransformarClientes\Conditional Split"
-          TopLeft="275,304" />
         <EdgeLayout
-          Id="Package\TransformarClientes.Paths[Merge Join Output]"
-          TopLeft="351.5,279">
+          Id="Package\TransformarClientes.Paths[Sort Output]"
+          TopLeft="198,193">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,25"
+              EndConnector="150.5,44"
               Start="0,0"
-              End="0,17.5">
+              End="150.5,36.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,17.5" />
+                    End="0,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18"
+                    Point2="0,22"
+                    Point3="4,22" />
+                  <mssgle:LineSegment
+                    End="146.5,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="146.5,22"
+                    Point2="150.5,22"
+                    Point3="150.5,26" />
+                  <mssgle:LineSegment
+                    End="150.5,36.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\TransformarClientes.Paths[NuevosRegistros]"
-          TopLeft="354.25,346">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,38"
-              Start="0,0"
-              End="0,30.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,30.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-37.017578125,9.5576171875,74.03515625,11.384765625"
-              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -11304,13 +13562,59 @@ WHERE        [fecha_entrega] IS NULL;
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="159,42"
-          Id="Package\TransformarTiempo\OrigenTB_fecha"
-          TopLeft="158,56.5" />
+          Size="150,42"
+          Id="Package\TransformarTiempo\SortTB_Fecha"
+          TopLeft="245,242.5" />
         <NodeLayout
           Size="158,42"
           Id="Package\TransformarTiempo\Derived Column"
           TopLeft="231.25,147.5" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\TransformarTiempo\DestinoDimTiempo"
+          TopLeft="395,475" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\TransformarTiempo\OrigenTB_fecha"
+          TopLeft="158,56.5" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\TransformarTiempo\OrigenDimTiempo"
+          TopLeft="520,50" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\TransformarTiempo\SortDimTiempo"
+          TopLeft="522.5,160" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\TransformarTiempo\Conditional Split"
+          TopLeft="405,406.25" />
+        <NodeLayout
+          Size="133,42"
+          Id="Package\TransformarTiempo\Merge Join"
+          TopLeft="410,330" />
+        <EdgeLayout
+          Id="Package\TransformarTiempo.Paths[Salida de origen de ADO NET1]"
+          TopLeft="602.25,92">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,68"
+              Start="0,0"
+              End="0,60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\TransformarTiempo.Paths[Salida de origen de ADO NET]"
           TopLeft="237.5,98.5">
@@ -11345,36 +13649,56 @@ WHERE        [fecha_entrega] IS NULL;
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="173,42"
-          Id="Package\TransformarTiempo\DestinoDimTiempo"
-          TopLeft="395,475" />
-        <NodeLayout
-          Size="168,42"
-          Id="Package\TransformarTiempo\OrigenDimTiempo"
-          TopLeft="520,50" />
-        <NodeLayout
-          Size="150,42"
-          Id="Package\TransformarTiempo\SortTB_Fecha"
-          TopLeft="245,242.5" />
-        <NodeLayout
-          Size="156,42"
-          Id="Package\TransformarTiempo\SortDimTiempo"
-          TopLeft="522.5,160" />
         <EdgeLayout
-          Id="Package\TransformarTiempo.Paths[Salida de origen de ADO NET1]"
-          TopLeft="602.25,92">
+          Id="Package\TransformarTiempo.Paths[NuevosRegistros]"
+          TopLeft="483,448.25">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,68"
+              EndConnector="0,26.75"
               Start="0,0"
-              End="0,60.5">
+              End="0,19.25">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,60.5" />
+                    End="0,19.25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-37.017578125,3.9326171875,74.03515625,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\TransformarTiempo.Paths[Merge Join Output]"
+          TopLeft="476.5,372">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8,34.25"
+              Start="0,0"
+              End="8,26.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.125"
+                    Point2="0,17.125"
+                    Point3="4,17.125" />
+                  <mssgle:LineSegment
+                    End="4,17.125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4,17.125"
+                    Point2="8,17.125"
+                    Point3="8,21.125" />
+                  <mssgle:LineSegment
+                    End="8,26.75" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -11417,44 +13741,6 @@ WHERE        [fecha_entrega] IS NULL;
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="133,42"
-          Id="Package\TransformarTiempo\Merge Join"
-          TopLeft="410,330" />
-        <EdgeLayout
-          Id="Package\TransformarTiempo.Paths[Sort Output]"
-          TopLeft="320,284.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="156.5,45.5"
-              Start="0,0"
-              End="156.5,38">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,18.75" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,18.75"
-                    Point2="0,22.75"
-                    Point3="4,22.75" />
-                  <mssgle:LineSegment
-                    End="152.5,22.75" />
-                  <mssgle:CubicBezierSegment
-                    Point1="152.5,22.75"
-                    Point2="156.5,22.75"
-                    Point3="156.5,26.75" />
-                  <mssgle:LineSegment
-                    End="156.5,38" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\TransformarTiempo.Paths[Sort Output1]"
           TopLeft="600.5,202">
@@ -11489,66 +13775,38 @@ WHERE        [fecha_entrega] IS NULL;
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="159,42"
-          Id="Package\TransformarTiempo\Conditional Split"
-          TopLeft="405,406.25" />
         <EdgeLayout
-          Id="Package\TransformarTiempo.Paths[Merge Join Output]"
-          TopLeft="476.5,372">
+          Id="Package\TransformarTiempo.Paths[Sort Output]"
+          TopLeft="320,284.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="8,34.25"
+              EndConnector="156.5,45.5"
               Start="0,0"
-              End="8,26.75">
+              End="156.5,38">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13.125" />
+                    End="0,18.75" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,13.125"
-                    Point2="0,17.125"
-                    Point3="4,17.125" />
+                    Point1="0,18.75"
+                    Point2="0,22.75"
+                    Point3="4,22.75" />
                   <mssgle:LineSegment
-                    End="4,17.125" />
+                    End="152.5,22.75" />
                   <mssgle:CubicBezierSegment
-                    Point1="4,17.125"
-                    Point2="8,17.125"
-                    Point3="8,21.125" />
+                    Point1="152.5,22.75"
+                    Point2="156.5,22.75"
+                    Point3="156.5,26.75" />
                   <mssgle:LineSegment
-                    End="8,26.75" />
+                    End="156.5,38" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\TransformarTiempo.Paths[NuevosRegistros]"
-          TopLeft="483,448.25">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,26.75"
-              Start="0,0"
-              End="0,19.25">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,19.25" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-37.017578125,3.9326171875,74.03515625,11.384765625"
-              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -11588,6 +13846,304 @@ WHERE        [fecha_entrega] IS NULL;
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\TransformacionProducto\OrigenDimProducto">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ExtraccionJardineria\OrigenDetalle_pedidoJardinera">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ExtraccionJardineria\DestinoTB_detalle_pedido">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ExtraccionJardineria\OrigenPedidoJardineria">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ExtraccionJardineria\DestinoTB_pedido">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\TransformaciónFact">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="146,42"
+          Id="Package\TransformaciónFact\OrigenVentas"
+          TopLeft="148,55" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\TransformaciónFact\DestinoFactVentasst"
+          TopLeft="295,380" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\TransformaciónFact\Origen de ADO NET"
+          TopLeft="486,64" />
+        <NodeLayout
+          Size="133,42"
+          Id="Package\TransformaciónFact\SortVentas"
+          TopLeft="164,137" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\TransformaciónFact\SortFactVentasst"
+          TopLeft="506,155" />
+        <EdgeLayout
+          Id="Package\TransformaciónFact.Paths[Salida de origen de ADO NET]"
+          TopLeft="221,97">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9.5,40"
+              Start="0,0"
+              End="9.5,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16"
+                    Point2="0,20"
+                    Point3="4,20" />
+                  <mssgle:LineSegment
+                    End="5.5,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5.5,20"
+                    Point2="9.5,20"
+                    Point3="9.5,24" />
+                  <mssgle:LineSegment
+                    End="9.5,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\TransformaciónFact.Paths[Salida de origen de ADO NET1]"
+          TopLeft="575.5,106">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="12,49"
+              Start="0,0"
+              End="12,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.5"
+                    Point2="0,24.5"
+                    Point3="4,24.5" />
+                  <mssgle:LineSegment
+                    End="8,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8,24.5"
+                    Point2="12,24.5"
+                    Point3="12,28.5" />
+                  <mssgle:LineSegment
+                    End="12,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="133,42"
+          Id="Package\TransformaciónFact\Merge Join"
+          TopLeft="318,222" />
+        <EdgeLayout
+          Id="Package\TransformaciónFact.Paths[Sort Output]"
+          TopLeft="230.5,179">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="133.166666666667,43"
+              Start="0,0"
+              End="133.166666666667,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.4933135215453" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.4933135215453"
+                    Point2="0,25.4933135215453"
+                    Point3="4,25.4933135215453" />
+                  <mssgle:LineSegment
+                    End="129.166666666667,25.4933135215453" />
+                  <mssgle:CubicBezierSegment
+                    Point1="129.166666666667,25.4933135215453"
+                    Point2="133.166666666667,25.4933135215453"
+                    Point3="133.166666666667,29.4933135215453" />
+                  <mssgle:LineSegment
+                    End="133.166666666667,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\TransformaciónFact.Paths[Sort Output1]"
+          TopLeft="587.5,197">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-182.166666666667,25"
+              Start="0,0"
+              End="-182.166666666667,17.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.8216939078752" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.8216939078752"
+                    Point2="0,14.8216939078752"
+                    Point3="-4,14.8216939078752" />
+                  <mssgle:LineSegment
+                    End="-178.166666666667,14.8216939078752" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-178.166666666667,14.8216939078752"
+                    Point2="-182.166666666667,14.8216939078752"
+                    Point3="-182.166666666667,18.8216939078752" />
+                  <mssgle:LineSegment
+                    End="-182.166666666667,17.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="159,42"
+          Id="Package\TransformaciónFact\Conditional Split"
+          TopLeft="314,302" />
+        <EdgeLayout
+          Id="Package\TransformaciónFact.Paths[Merge Join Output]"
+          TopLeft="384.5,264">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9,38"
+              Start="0,0"
+              End="9,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15"
+                    Point2="0,19"
+                    Point3="4,19" />
+                  <mssgle:LineSegment
+                    End="5,19" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5,19"
+                    Point2="9,19"
+                    Point3="9,23" />
+                  <mssgle:LineSegment
+                    End="9,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\TransformaciónFact.Paths[NuevosRegistro]"
+          TopLeft="393.5,344">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8,36"
+              Start="0,0"
+              End="-8,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14"
+                    Point2="0,18"
+                    Point3="-4,18" />
+                  <mssgle:LineSegment
+                    End="-4,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4,18"
+                    Point2="-8,18"
+                    Point3="-8,22" />
+                  <mssgle:LineSegment
+                    End="-8,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-38.74203125,23,69.4840625,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\TransformaciónFact\OrigenVentas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\TransformaciónFact\DestinoFactVentasst">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\TransformaciónFact\Origen de ADO NET">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
